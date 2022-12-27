@@ -1,0 +1,9 @@
+OBJECTDIR=../../obj/kernel
+CONFIG=STD+WS
+
+SRCDIR=${SRCBASE}${SRCSUFFIX}
+VPATH=${SRCDIR}
+
+all: $(CONFIG).all
+
+_build_prefix_%: %

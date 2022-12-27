@@ -1,0 +1,11 @@
+FILES
+Makefile
+RCS
+bin_tests.csh
+cowtest.c
+cthreads
+ipc_test.c
+mach_tests.csh
+test_netname.c
+test_service.c
+vm_read.c

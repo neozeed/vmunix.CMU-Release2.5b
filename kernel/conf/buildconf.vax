@@ -1,0 +1,24 @@
+#
+# Mach Operating System
+# Copyright (c) 1989 Carnegie-Mellon University
+# All rights reserved.  The CMU software License Agreement specifies
+# the terms and conditions for use and redistribution.
+#
+#
+# HISTORY
+# 28-Aug-89  Mary Thompson (mrt) at Carnegie-Mellon University
+#	Mach Release 2.5 version, mostly non-afs kernels.
+#
+# $Log:	buildconf.vax,v $
+# 
+# 18-May-88  Mike Accetta (mja) at Carnegie-Mellon University
+#	Created.
+#	[ V5.1(XF25) ]
+#
+#
+
+STD+WS = STD+WS-afs =  STD+ANY-afs
+
+STD+MP+16-afs = STD+MP+16-afs-nfs
+
+STD+WS-afs-nfs = STD+ANY-afs-nfs

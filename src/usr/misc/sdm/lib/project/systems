@@ -1,0 +1,72 @@
+######################################################################
+# HISTORY
+# $Log:	systems,v $
+# Revision 2.9  89/07/05  14:57:23  gm0w
+# 	Added "usr/misc/.f77/{bin,lib}" to search paths.
+# 	[89/07/05            gm0w]
+# 
+# Revision 2.8  89/04/23  16:03:06  gm0w
+# 	Added build_makeflags directive to run make with -mc.
+# 	[89/04/23            gm0w]
+# 
+# Revision 2.7  89/03/23  10:56:14  gm0w
+# 	Updated to new source organization.
+# 	[89/03/23            gm0w]
+# 
+# Revision 2.6  89/03/08  10:26:16  gm0w
+# 	Added missing "/project" to PROJECTPATH.
+# 	[89/03/08            gm0w]
+# 
+# Revision 2.5  89/02/19  11:20:45  gm0w
+# 	Added "project" name of "systems" and "path PROJECTPATH"
+# 	of "usr/misc/.sdm/lib/project".
+# 	[89/02/19            gm0w]
+# 
+# Revision 2.4  89/01/29  09:27:06  gm0w
+# 	Added authentication covers.
+# 	[89/01/29            gm0w]
+# 
+# Revision 2.3  89/01/22  12:56:29  gm0w
+# 	Added release_lock directive.
+# 	[89/01/22            gm0w]
+# 
+# Revision 2.2  89/01/10  23:18:12  gm0w
+# 	Created.
+# 	[89/01/10            gm0w]
+# 
+######################################################################
+project systems
+project_base /afs/cs.cmu.edu/mach
+flags dosearch
+build_makeflags -mc
+rcs_base rcs
+rcs_owner csarch
+rcs_cover /usr/misc/.sdm/lib/authcover
+source_base src
+source_owner cssrc
+source_cover /usr/misc/.sdm/lib/authcover
+object_base obj/@sys
+object_owner csbin
+object_cover /usr/misc/.sdm/lib/authcover
+release_base /afs/.cs.cmu.edu/@sys
+release_lock /dist/release_lock
+release_owner root
+release_cover /usr/misc/.sdm/lib/authcover
+stage latest /dist/LATEST,latest norm
+stage alpha /dist/ALPHA,alpha
+stage beta /dist/BETA,beta
+stage omega,default /dist/DEFAULT,omega
+#Future AFS release stages
+#stage latest latest norm
+#stage alpha alpha norm
+#stage beta beta norm
+#stage omega,default omega norm
+environ_base /afs/cs.cmu.edu/@sys
+environ latest latest
+environ alpha alpha
+environ beta beta
+environ omega,default omega
+path PROJECTPATH usr/misc/.sdm/lib/project
+path PATH usr/misc/.rcs/bin:usr/misc/.sdm/bin:usr/cs/etc:usr/cs/bin:etc:usr/ucb:bin:usr/bin:usr/misc/.f77/bin
+path CPATH usr/cs/include:usr/include
+path LPATH usr/misc/.rcs/lib:usr/misc/.sdm/lib:usr/cs/lib:lib:usr/lib:usr/misc/.hc/lib:usr/misc/.f77/lib

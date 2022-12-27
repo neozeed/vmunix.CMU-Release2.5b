@@ -1,0 +1,17 @@
+FILES
+Makefile
+RCS
+format.c
+gdb
+hostinfo.c
+macherr.c
+md.c
+mig
+mpr.c
+qvss
+start_rem_server
+vm_stat.c
+vmmprint.c
+vmoprint.c
+vmpinfo.c
+zprint.c

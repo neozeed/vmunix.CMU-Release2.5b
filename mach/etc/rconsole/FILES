@@ -1,0 +1,8 @@
+FILES
+Makefile
+lookup.c
+rconsole.c
+rconsole.doc
+rconsole.h
+rconsoled.c
+rconsoles

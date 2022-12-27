@@ -1,0 +1,17 @@
+########################################
+#
+# HISTORY
+# $Log:	rc.add,v $
+# Revision 2.0  89/06/15  15:30:30  dimitris
+#   Organized into a misc collection and SSPized
+# 
+# 
+#
+########################################
+if [ -f /usr/misc/.nfs/etc/rc ]; then
+	date 						>/dev/console 2>&1
+	echo "initializing for afs[vice]/nfs"		>/dev/console 2>&1
+	sh /usr/misc/.nfs/etc/rc
+	echo "."					>/dev/console 2>&1
+	date 						>/dev/console 2>&1
+fi

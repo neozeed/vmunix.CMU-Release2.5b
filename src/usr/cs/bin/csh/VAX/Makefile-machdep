@@ -1,0 +1,16 @@
+######################################################################
+# HISTORY
+# $Log:	Makefile-machdep,v $
+# Revision 2.2  89/08/15  15:20:14  mja
+# 	Created.
+# 
+######################################################################
+#
+
+OFILES = ${OFILES} doprnt.o
+
+# need an old doprnt, whose output we can trap
+doprnt.o: doprnt.c
+	${_CC_} -E ${_CCFLAGS_} doprnt.c > doprnt.i
+	${AS} -o doprnt.o doprnt.i
+	${RM} -f doprnt.i

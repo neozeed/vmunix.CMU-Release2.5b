@@ -1,0 +1,92 @@
+This directory contains a version of the C library which has (currently
+incomplete) changes for supporting multithreaded calls.  Currently only the
+stdio functions are completed, although it was though that this was useful
+enough as is to warrant making it available.  To use it, do a:
+
+    setpath -ib /usr/mach /usr/mach/parallel
+
+(adding /usr/mach/parallel/include and /usr/mach/parallel/lib respectively to
+your CPATH and LPATH environment variables before the corresponding /usr/mach
+directories) to add the new library and include files to your paths, and link
+with
+
+    -lthreads -lmach -lc -lthreads
+
+to insure that all external references will be resolved.  (This may be cleaned
+up once the changes are completed.)  The release notes from the CMU releases
+follow.
+
+				-- Mike Jones
+
+------------------------------------------------------------------------
+
+A first version of libc.a with support for multiple threads is available for
+the Vax, RT, and Sun.  While all of libc.a (and libc_p.a) are present, only
+the standard i/o functions have currently been modified to run correctly in a
+multi-threaded program.  Work on the rest of the library and other machines is
+in progress.
+
+To use it you must be running a mach kernel which supports threads.
+Then do a "setpath -ib
+/usr/mach /usr/mach/parallel" to put /usr/mach/parallel/{include,lib} in your
+search paths when building parallel programs.  When linking, you currently
+need to specify "-lthreads -lmach -lc -lthreads" (yes, two "-lthreads"
+references) in order to make sure all unresolved references can be completed
+due to some circular dependencies.  This should change in the future.
+
+Once recompiled, code using stdio should be "safe" for use with threads
+without modification.  (This was the goal of the changes.)  Old libraries
+which use stdio should continue to function correctly when linked with the new
+libc, provided no concurrent getc, getchar, putc, putchar, or clearerr calls
+are made (which would have broken before anyway).
+
+The stdio buffer locks are exported from stdio.h for higher-level code to use
+where appropriate.  For instance, the code:
+
+	register f_buflock stdout_lock;
+
+	stdout_lock = f_lockbuf(stdout);
+	printf("Line 1\n");
+	printf("Line 2\n");
+	f_unlockbuf(stdout_lock);
+
+would guarantee that "Line 1\n" and "Line 2\n" don't have other output to
+stdout interspersed between them.  Without the locking, the printf's would
+still be atomic, but other output could come between them.  The locks are
+written such that N locks followed by N unlocks by the same thread is
+equivalent to just the first and the last lock and unlock.  This allows
+routines to correctly lock and unlock buffers without fear that routines they
+call will do the same.
+
+To maintain atomicity (and keep the buffer data structures from being broken)
+all the "routine" macros getc, getchar, putc, putchar, and clearerr each call
+their routine counterparts.  For efficiency, unlocked versions of each are
+still provided with the name prefix "unlocked_" (e.g., "unlocked_getc").
+These should only be used within explicit f_lockbuf ...  f_unlockbuf contexts,
+or else you'll break the buffer data structures in multi-threaded code.
+
+Code compiled with the the new stdio.h include file will still work correctly
+with the old libc.a provided you don't use the lock primitives (and don't run
+multi-threaded).  While currently true, no guarantees are given that this
+property will be absolutely preserved through subsequent releases.
+
+Finally, this stdio includes Mary's changes which automatically map read-only
+files into memory.  See man fmap(3) for more details.
+
+------------------------------------------------------------------------
+
+A second version of libc.a with support for multiple threads is available for
+the Vax, RT, Sun, and for the first time, the Multimax.  As before do a:
+
+    setpath -ib /usr/mach /usr/mach/parallel
+
+to add the new library and include files to your paths, and link with
+
+    -lthreads -lmach -lc -lthreads
+
+to insure that all external references will be resolved.
+
+Currently only stdio functions are locked, although the rest will follow in
+future releases.  This version tracks some facilities changes, mostly in
+domain name resolution code, and should alleviate any "symbol 'exit' multiply
+defined" errors which may have occured with the past version.

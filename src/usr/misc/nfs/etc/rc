@@ -1,0 +1,59 @@
+########################################
+#
+# HISTORY
+# $Log:	rc,v $
+# Revision 2.0  89/06/15  15:30:26  dimitris
+#   Organized into a misc collection and SSPized
+# 
+# 
+#
+########################################
+rm -f /AFS
+if [ "`echo afs_vnodeops=X | adb /vmunix `" != 'symbol not found' ] 
+then
+	>/AFS
+	if [ -f /usr/misc/.nfs/etc/afsd ] ; then
+		/usr/misc/.nfs/etc/afsd -nosettime;	echo -n 'afsd'	     >/dev/console 2>&1
+	else
+		echo Yikes\!\!\! YOU DONT HAVE AN AFS DAEMON
+	fi
+fi
+
+rm -f /NFS
+if [ "`echo nfs_vnodeops=X | adb /vmunix `" != 'symbol not found' ] 
+then
+	>/NFS
+
+        if grep 4.2 /etc/FSTAB >/dev/null; then true; else
+                rm -f /etc/FSTAB
+        fi
+        if [ ! -f /etc/FSTAB ]; then
+                awk 'BEGIN {FS=":"} { print $1 "\t" $2 "\t4.2\t" $3 "\t" $4 "\t" $5 }' /etc/fstab >/etc/FSTAB
+        fi
+
+	if [ -f  /usr/misc/.nfs/etc/portmap ] ; then
+		/usr/misc/.nfs/etc/portmap;	echo -n ' portmap'	>/dev/console
+	else
+		echo Yikes\!\!\! YOU DONT HAVE AN PORTMAP DAEMON
+	fi
+
+	if [ -f  /usr/misc/.nfs/etc/nfsd ] ; then
+		/usr/misc/.nfs/etc/nfsd 5;	echo -n ' nfsd'		>/dev/console
+	else
+		echo Yikes\!\!\! YOU DONT HAVE AN NFS DAEMON
+	fi
+
+
+	if [ -f  /usr/misc/.nfs/etc/rpc.mountd ] ; then
+		(/usr/misc/.nfs/etc/rpc.mountd &);echo -n ' rpc.mountd'	>/dev/console
+	else
+		echo Yikes\!\!\! YOU DONT HAVE AN RPC.MOUNT DAEMON
+	fi
+
+fi
+
+rm -f /VICE
+if [ "`echo rmt_ops=X | adb /vmunix `" != 'symbol not found' ] 
+then
+	>/VICE
+fi

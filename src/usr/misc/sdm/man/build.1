@@ -1,0 +1,514 @@
+.TH BUILD 1 9/8/88
+.CM 4
+.SH NAME
+build \- build/release component from source/release area
+.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.\" HISTORY
+.\" $Log:	build.1,v $
+.\" Revision 2.4  89/06/16  12:00:23  gm0w
+.\" 	Updated for new "project" version.
+.\" 	[89/06/16            gm0w]
+.\" 
+.\" Revision 2.3  88/11/12  18:22:41  gm0w
+.\" 	Updated documentation for latest changes to build.
+.\" 	[88/11/12            gm0w]
+.\" 
+.\" Revision 2.2  88/11/09  00:36:43  gm0w
+.\" 	Updated to describe latest SSP changes.
+.\" 	[88/11/09            gm0w]
+.\" 
+.\" Revision 2.4  88/10/24  19:56:27  gm0w
+.\" 	Added -to<xxx> implies -from<yyy> description.
+.\" 	[88/10/24            gm0w]
+.\" 
+.\" Revision 2.3  88/09/19  13:45:16  mja
+.\" 	Correct some typos and formatting problems.
+.\" 	[88/09/19  13:43:12  mja]
+.\" 
+.\" Revision 2.2  88/09/11  01:25:42  mja
+.\" 	Created.
+.\" 	[88/09/11  01:09:44  mja]
+.\" 
+.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.SH SYNOPSIS
+.B build
+[ option ... ] component [ ... ] 
+.SH DESCRIPTION
+.I Build
+is the program which is used to build a
+.I project
+component
+from a project source area into the corresponding build area.
+.I Build
+is also used to release a built component from the build
+area into a release area or to move a released component from one
+release stage to the next.  The actions of build are controlled by
+the project description file for the project used and the
+.I options
+given to
+.I build 
+on the command line.  For more details about projects and their
+descriptions, see
+.IR project (1).
+.PP
+The following directives in the project description are used by
+.IR build :
+.TP
+\fBenviron_base\fR path
+specifies the path to the base of the compilation environment
+areas to be used by
+.IR build .
+The path must be absolute if the
+.B project_base
+directive is not specified in the project description, otherwise
+the path may be relative to
+.BR project_base .
+The
+.BR environ_base ,
+.B environ
+and
+.B path
+directives are used together to generate the search paths used
+by programs run by
+.IR build .
+The description of the
+.B path
+directive that follows describes how
+.B environ_base
+is used to generate search paths.
+.TP
+\fBenviron\fR name path
+defines an environment which may be selected using the
+.B \-as
+option to
+.IR build .
+The
+.I path
+argument of the environment selected is used in conjuction with the
+.B environ_base
+and
+.B path
+directives to define the search paths used by
+.I build
+and is described in more detail below.
+.TP
+\fBpath\fR name value
+specifies a search path to place in the environment for use
+by programs run by
+.IR build .
+.I Name
+is the name of the path to place in the environment,
+e.g.
+.BR PATH ,
+and
+.I value
+is a colon separated list of pathnames.  Any paths in
+.I value
+that are relative will be replaced with an absolute path
+created from
+.BR environ_base ,
+the
+.I path
+argument from the selected
+.B environ
+and the relative path of
+.IR value .
+For example, with
+"\fBenviron_base /project/env\fR",
+"\fBenviron test test\fR" and
+"\fBpath CPATH include:/usr/cs/include\fR"
+directives
+and invoking
+.I build
+with \fB\-as test\fR,
+.B CPATH
+would be set to be
+.BR /project/env/test/include:/usr/cs/include .
+.TP
+\fBbuild_makeflags\fR flags
+specifies flags that should always be passed to
+.I make
+when invoked by
+.IR build .
+.PP
+Except as described below,
+.I build
+will invoke
+.IR make (1)
+to build each
+.I component
+from the source area
+into the build area.
+Any
+.I options
+not interpreted by
+.I build
+or of the
+form
+.I *=*
+are simply passed along
+to
+.I make.
+.PP
+Each
+.I component
+is either an absolute pathname (e.g.
+.IR /bin/cc )
+or the name of some make target relative to the current
+directory.  When
+.I component
+is specified using an absolute pathname,
+.I build
+will automatically change directory to the appropriate 
+source area before proceeding with each build operation.
+Since the source directory path occasionally differs from the
+release path (e.g. the sources to
+.I supfilesrv
+are in the
+.I /usr/cs/bin/sup
+directory, while the release path is
+.IR /usr/cs/etc/supfilesrv ),
+it is currently necessary to use the path to the source directory with
+the intended target as the trailing component when using
+.I build
+(e.g.
+.IR /usr/cs/bin/sup/supfilesrv ).
+This is presumably temporary.
+.PP
+When
+.I component
+is not an absolute pathname,
+.I build
+will automatically change directory to the appropriate 
+relative directory area (if the pathname has more than
+a single component)
+before proceeding with each build operation.
+.PP
+If a private shadow area is defined in the project description (using
+the
+.BR shadow_base ,
+.B shadow_source_base
+and
+.B shadow_object_base
+directives),
+.I build
+will use this area to build the specified
+.IR component .
+A copy of the master source
+.B Makeconf
+file must be placed in the base directory
+of the shadow area but thereafter any file not found
+in the shadow area is sought for in the master source area by using the
+.B SOURCEDIR
+variable in
+.IR make .
+.PP
+The following
+.I options
+are used to control the compilation environment in which
+.I build
+operates.  Environments are defined in the project description
+file by specifying
+.BR environ_base ,
+.B environ
+and
+.B path
+directives as described above.
+.TP
+\fB\-as\fR environ
+Build
+.I
+component
+with paths set to the
+.I environ
+release environment.
+.TP
+\fB\-aslatest\fR, \fB\-al\fR
+Equivalent to \fB\-as latest\fR.
+.TP
+\fB\-asalpha\fR, \fB\-aa\fR
+Equivalent to \fB\-as alpha\fR.
+.TP
+\fB\-asbeta\fR, \fB\-ab\fR
+Equivalent to \fB\-as beta\fR.
+.TP
+\fB\-asomega\fR, \fB\-ao\fR, \fB\-asdefault\fR, \fB\-ad\fR
+Equivalent to \fB\-as omega\fR.
+.PP
+In addition, the following
+.I options
+may be specified to modify the
+normal build process:
+.TP
+\fB\-clean\fR
+Clean-out the build area for
+.I component
+before building it.
+.TP
+\fB\-lint\fR
+Run
+.IR lint (1)
+for
+.I component
+after building it.
+.TP
+\fB\-debug\fR
+Enable debugging to trace execution of the program.
+.TP
+\fB\-noshadow\fR, \fB\-ns\fR
+Disable use of shadow area when one is defined and build using just the
+master areas.  Useful when compilation of the master version is desired
+without releasing the result.
+.PP
+.I Build
+normally will make or release one component at a time.  However, to
+.I build
+all of the components within a subtree of the source area, the
+following
+.I
+option
+is used:
+.TP
+\fB\-here\fR
+Build, clean, lint and/or release all of the components within
+a subtree of the source area.  When this switch is specified,
+.I component
+should be the path to the directory that will be the root of the
+subtree to
+.I build
+(for example, a
+.I component
+of
+.I /usr/cs/include
+would invoke
+.I build
+for all the files in
+.IR /usr/cs/include ).
+.PP
+Finally, each
+.I component
+may be optionally released beginning from one release distribution
+area and ending with another.  Intermediate release stages are also
+updated so that a release beginning with the first distribution
+stage and ending with the third would also update
+.I component
+in the second distribution area as well.
+The following options are used to identify the end points
+of the release process.
+.TP
+\fB\-fromstage\fR stage
+Release
+.I component
+begginning from the
+.I stage
+release stage.  The special release stage
+.B source
+will release
+.I component
+beginning from the system build area. 
+The
+.I component
+will first be built from the source area to
+the build area.
+.TP
+\fB\-tostage\fR stage
+Release
+.I component
+ending with the
+.I stage
+release stage.
+.PP
+The following options are provided for the more common release stages
+used by the facilities
+.B systems
+project.
+.TP
+\fB\-fromsource\fR, \fB\-fs\fR
+Equivalent to \fB\-fromstage source\fR.
+.TP
+\fB\-fromlatest\fR, \fB\-fl\fR
+Equivalent to \fB\-fromstage latest\fR.
+.TP
+\fB\-fromalpha\fR, \fB\-fa\fR
+Equivalent to \fB\-fromstage alpha\fR.
+.TP
+\fB\-frombeta\fR, \fB\-fb\fR
+Equivalent to \fB\-fromstage beta\fR.
+.TP
+\fB\-fromomega\fR, \fB\-fo\fR, \fB\-fromdefault\fR, \fB\-fd\fR
+Equivalent to \fB\-fromstage omega\fR.
+.TP
+\fB\-tolatest\fR, \fB\-tl\fR
+Equivalent to \fB\-tostage latest\fR.
+.TP
+\fB\-toalpha\fR, \fB\-ta\fR
+Equivalent to \fB\-tostage alpha\fR.
+.TP
+\fB\-tobeta\fR, \fB\-tb\fR
+Equivalent to \fB\-tostage beta\fR.
+.TP
+\fB\-toomega\fR, \fB\-to\fR, \fB\-todefault\fR, \fB\-td\fR
+Equivalent to \fB\-tostage omega\fR.
+.PP
+If a \fB\-fromstage\fR option is given without a \fB\-tostage\fR option,
+or vice-versa, the release stage immediately following, or preceeding,
+the
+.I stage
+specified is assumed.  Releasing from the last defined release stage is
+illegal.  Releasing from the source area, or to the first release stage,
+will build the
+.I component
+first before releasing it.
+.PP
+During the release process, these additional
+.I options
+may be used to control the behavior of
+.IR release (1).
+.TP
+\fB\-replaceok\fR
+Suppress asking if release is permitted to replace a version of
+.I component
+already in one of the release stages about to be replaced by a
+different version, just print a warning and proceed.
+.PP
+A log message is normally requested for the beginning release stage
+and propagated through subsequent release stages.
+The log message may also be posted to the
+.B unix-changelog
+bulletin-board at the final release stage.
+The available options are:
+.TP
+\fB\-nopost\fR
+Suppress the log message bulletin-board post normally made by
+.I release
+when it releases a file.
+This option is simply passed along to
+.I release.
+This option is automatically supplied to
+.I release
+for all but the final release stage for a given
+.I component.
+.TP
+\fB\-uselog\fR target
+Extract a log message for the release from the end release
+stage of the identified
+.I target
+rather than prompting the user or taking it from
+the beginning release stage of the current
+.I component.
+Again, this option is simply passed along to
+.I release
+and is used to automatically provide the same log
+message for a set of files which are related
+to some file
+which has been previously released.
+.TP
+\fB\-logfile\fR file
+Use the contents of
+.I file
+as the log message for
+.IR component .
+.PP
+As a special case, the master system working source area can
+be updated from the master system RCS area with
+.I option:
+.TP
+\fB\-checkout\fR, \fB\-co\fR
+Check-out system source files
+from the RCS area to the system working area
+corresponding to the specified build
+environment.
+In this case, each
+.I component
+is interpreted as a source file name beginning from the
+root of the source hierarchy.
+This option is used in conjunction with the
+new 
+.IR bci (1)
+(and friends) branch-style RCS commands.
+.SH EXAMPLES
+Build and release a new latest version of
+.I /usr/cs/etc/makepath:
+.PP
+.RS
+.ft B
+build \-tolatest /usr/cs/etc/makepath
+.ft R
+.RE
+.PP
+(at least one of
+.BI \-from xxx
+or
+.BI \-to xxx
+must be explicitly specified to trigger the release processing).
+.PP
+Build and release a new version of
+.I /usr/cs/bin/ls
+for "alpha-test":
+.PP
+.RS
+.ft B
+build \-toalpha \-fromsource /usr/cs/bin/ls
+.ft R
+.RE
+.PP
+Remove any previous version from the build area,
+then re-build and release a new version of
+.I /bin/pwd
+in the
+"alpha-test" environment but release it for "beta-test":
+.PP
+.RS
+.ft B
+build \-clean \-tobeta \-fromsource \-asalpha /bin/pwd
+.ft R
+.RE
+.PP
+Move the current "beta-test" version of 
+.I /bin/ps
+to default release without disturbing the build area:
+.PP
+.RS
+.ft B
+build \-frombeta \-todefault /bin/ps
+.ft R
+.RE
+.PP
+Update the working source for the 
+.I /usr/cs/etc/dku
+script:
+.PP
+.RS
+.ft B
+build \-checkout /usr/cs/etc/dku/dku.csh
+.ft R
+.RE
+.PP
+Move the  "alpha-test" versions of
+.I /usr/cs/etc/nanny
+and
+.I /usr/cs/etc/nanny.config
+to "beta-test" and re-use the 
+log message found in  "beta-test" for
+.I nanny
+(having just been moved there itself from
+the "alpha-test" area) for
+.I nanny.config
+while suppressing the post for
+.I nanny.config
+(because the common log message describes both changes):
+.PP
+.RS
+.ft B
+build \-tobeta /usr/cs/etc/nanny
+.br
+build \-tobeta \-nopost \-uselog /usr/cs/etc/nanny /usr/cs/etc/nanny.config
+.ft R
+.RE
+.SH "SEE ALSO"
+bci(1), make(1), release(1), project(1)
+.SH DIAGNOSTICS
+Mostly errors from
+.I make (1).
+.SH BUGS
+Yes.

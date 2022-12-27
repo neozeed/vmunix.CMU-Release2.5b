@@ -1,0 +1,22 @@
+######################################################################
+# HISTORY
+#  5-Jul-89  Mary Thompson (mrt) at Carnegie-Mellon University
+#	Modified OBJECTDIR for Mach 2.5 release
+#
+# $Log:	Makeconf,v $
+# Revision 2.18  89/04/25  12:52:50  gm0w
+# 	Updated to new organization.
+# 	[89/04/25            gm0w]
+# 
+# Revision 2.17  88/11/08  23:24:34  gm0w
+# 	Heavily modified for new and improved SSP format.
+# 	[88/10/23            gm0w]
+# 
+######################################################################
+#
+#  Allow a master source area to be imported from the MASTERSOURCEDIR
+#  environment variable.
+#
+SOURCEDIR=${MASTERSOURCEDIR}
+
+OBJECTDIR=/MACH-DIST/usr/build/obj

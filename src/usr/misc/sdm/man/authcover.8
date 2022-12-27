@@ -1,0 +1,81 @@
+.TH AUTHCOVER 8 1/24/89
+.CM 4
+.SH NAME
+authcover \- authentication cover program
+.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.\" HISTORY
+.\" $Log:	authcover.8,v $
+.\" Revision 2.4  89/06/16  11:59:58  gm0w
+.\" 	Minor style changes.
+.\" 	[89/06/16            gm0w]
+.\" 
+.\" Revision 2.3  89/01/28  23:08:21  gm0w
+.\" 	Changed from bcsauth to authcover.
+.\" 	[89/01/28            gm0w]
+.\" 
+.\" Revision 2.2  89/01/24  23:39:30  mja
+.\" 	Created.
+.\" 
+.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.SH SYNOPSIS
+.B authcover
+program [ arg ... ]
+.SH DESCRIPTION
+This authentication cover program is used when access to certain
+areas of the filesystem is being limited to a restricted
+set of commands.
+Any command requiring update access to such areas of the filesystem
+is indirectly invoked through this cover program
+in order to obtain the
+necessary access privileges.
+.PP
+The command operates initially with an effective user ID of
+.I root
+so that it can set the user and group ID's
+to the appropriate values before executing the specified
+.I program.
+It is executable only by group
+.I systems
+so that only members of this group may use it
+to obtain these privileges, but within this group the command
+is not expected to be impregnable with respect to protection
+issues.
+.PP
+The specified
+.I program
+is run under the login name specified in the
+.B AUTHCOVER_USER
+environment variable, effectively as if
+.IR ru(1)
+had been used,
+and
+this login name
+is expected to grant write-access to the
+directory specified in the
+.B AUTHCOVER_TESTDIR
+environment variable.
+Only a restricted set of programs may be invoked.
+.PP
+If no AFS authentication information has yet been recorded for
+this login name and the current user and controlling terminal
+or it is out of date,
+the appropriate password is requested and
+used to establish the necessary AFS authentication tokens for
+this login name.
+These tokens are saved across multiple invocations of
+.I authcover
+so that a password need not be specified for every
+command.
+They are stored readable only by the
+current user and encrypted with his/her current AFS authentication tokens
+in order
+to reduce the likelihood that they can be accidentally or intentionally
+used by anyone else.
+.SH FILES
+.nf
+.ta \w'/tmp/authcover "<uid><authuser><ttyd>    'u
+.IR /tmp/authcover "<uid><authuser><ttyd>	saved authentication info"
+.IR /usr/misc/.sdm/lib/authcover.list "	program list"
+.fi
+.SH "SEE ALSO"
+bci(1), project(1)

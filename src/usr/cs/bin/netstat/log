@@ -1,0 +1,17 @@
+[ /afs/cs.cmu.edu/project/mach/release.2.5/. (as default) ]
+cd ... ./usr/cs/bin/netstat
+cd /MACH-DIST/usr/build/obj/usr/cs/bin/netstat
+cc    -DKERNEL_FEATURES    -O -o netstat.iv.out netstat_iv.c
+./netstat.iv.out >netstat.iv
+INCLUDE VERSION: 25
+cc -c    -O -DKERNEL_FEATURES /afs/cs.cmu.edu/project/mach/release.2.5/usr/cs/bin/netstat/host.c
+cc -c    -O -DKERNEL_FEATURES /afs/cs.cmu.edu/project/mach/release.2.5/usr/cs/bin/netstat/inet.c
+cc -c    -O -DKERNEL_FEATURES /afs/cs.cmu.edu/project/mach/release.2.5/usr/cs/bin/netstat/if.c
+cc -c    -O -DKERNEL_FEATURES /afs/cs.cmu.edu/project/mach/release.2.5/usr/cs/bin/netstat/main.c
+cc -c    -O -DKERNEL_FEATURES /afs/cs.cmu.edu/project/mach/release.2.5/usr/cs/bin/netstat/mbuf.c
+cc -c    -O -DKERNEL_FEATURES /afs/cs.cmu.edu/project/mach/release.2.5/usr/cs/bin/netstat/route.c
+cc -c    -O -DKERNEL_FEATURES /afs/cs.cmu.edu/project/mach/release.2.5/usr/cs/bin/netstat/unix.c
+cc -c    -O -DKERNEL_FEATURES /afs/cs.cmu.edu/project/mach/release.2.5/usr/cs/bin/netstat/ns.c
+cc    -o netstat.out host.o inet.o if.o main.o mbuf.o route.o unix.o ns.o 
+mv netstat.out netstat
+cp -p netstat netstat.iv25

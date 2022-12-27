@@ -1,0 +1,932 @@
+cd ../../obj/kernel
+[ generating ./bin/buildconf ]
+`../bin/buildconf' is up to date.
+
+****************** STD+WS *******************
+[ generating ./bin/config ]
+`../../bin/config' is up to date.
+[ configuring in STD+WS ]
+../bin/config -c ../conf  STD+WS
+[ making STD+WS ]
+cat assym.s  ../../../src/kernel/vax/rpb.s  ../../../src/kernel/vax/scb.s  ../../../src/kernel/vaxnb/biscb.s  ubvec.s  ../../../src/kernel/vax/locore.s  ../../../src/kernel/vaxnb/biglue.s  ubglue.s  >locore.tmp
+mv locore.tmp locore.c
+cc -E -DLOCORE -I../../../src/kernel/machine -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER locore.c >locore.i
+as -o locore.o ../../../src/kernel/vax/pcb.m locore.i
+rm locore.i
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/afs/afs_cache.c && /lib/c2 afs_cache.s | ././inline  | as -o afs_cache.o && rm -f afs_cache.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/init_sysent.c && /lib/c2 init_sysent.s | ././inline  | as -o init_sysent.o && rm -f init_sysent.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_inode.c && /lib/c2 ufs_inode.s | ././inline  | as -o ufs_inode.o && rm -f ufs_inode.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/builtin/inode_pager.c && /lib/c2 inode_pager.s | ././inline  | as -o inode_pager.o && rm -f inode_pager.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mfs_prim.c && /lib/c2 mfs_prim.s | ././inline  | as -o mfs_prim.o && rm -f mfs_prim.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_server.c && /lib/c2 nfs_server.s | ././inline  | as -o nfs_server.o && rm -f nfs_server.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_subr.c && /lib/c2 nfs_subr.s | ././inline  | as -o nfs_subr.o && rm -f nfs_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_vnodeops.c && /lib/c2 nfs_vnodeops.s | ././inline  | as -o nfs_vnodeops.o && rm -f nfs_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_xdr.c && /lib/c2 nfs_xdr.s | ././inline  | as -o nfs_xdr.o && rm -f nfs_xdr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/specfs/bdev_vnodeops.c && /lib/c2 bdev_vnodeops.s | ././inline  | as -o bdev_vnodeops.o && rm -f bdev_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/specfs/spec_subr.c && /lib/c2 spec_subr.s | ././inline  | as -o spec_subr.o && rm -f spec_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/specfs/spec_vnodeops.c && /lib/c2 spec_vnodeops.s | ././inline  | as -o spec_vnodeops.o && rm -f spec_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/ufs_vnodeops.c && /lib/c2 ufs_vnodeops.s | ././inline  | as -o ufs_vnodeops.o && rm -f ufs_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs.c && /lib/c2 vfs.s | ././inline  | as -o vfs.o && rm -f vfs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_conf.c && /lib/c2 vfs_conf.s | ././inline  | as -o vfs_conf.o && rm -f vfs_conf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_sysnames.c && /lib/c2 vfs_sysnames.s | ././inline  | as -o vfs_sysnames.o && rm -f vfs_sysnames.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_vnode.c && /lib/c2 vfs_vnode.s | ././inline  | as -o vfs_vnode.o && rm -f vfs_vnode.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ioconf.c && /lib/c2 ioconf.s | ././inline  | as -o ioconf.o && rm -f ioconf.s;  ;  ;  
+loading vmunix.sys
+rearranging symbols
+text	data	bss	dec	hex
+545980	90472	139020	775472	bd530
+(null command)
+ln vmunix.sys vmunix; ln vmunix vmunix.CMU-Release2.5b.STD+WS
+(null command)
+(null command)
+(null command)
+/usr/mach/bin/md -f -d `ls *.d`
+
+****************** STD+WS-afs *******************
+[ generating ./bin/config ]
+`../../bin/config' is up to date.
+[ configuring in STD+WS-afs ]
+../bin/config -c ../conf  STD+WS-afs
+[ making STD+WS-afs ]
+cat assym.s  ../../../src/kernel/vax/rpb.s  ../../../src/kernel/vax/scb.s  ../../../src/kernel/vaxnb/biscb.s  ubvec.s  ../../../src/kernel/vax/locore.s  ../../../src/kernel/vaxnb/biglue.s  ubglue.s  >locore.tmp
+mv locore.tmp locore.c
+cc -E -DLOCORE -I../../../src/kernel/machine -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER locore.c >locore.i
+as -o locore.o ../../../src/kernel/vax/pcb.m locore.i
+rm locore.i
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/init_sysent.c && /lib/c2 init_sysent.s | ././inline  | as -o init_sysent.o && rm -f init_sysent.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_inode.c && /lib/c2 ufs_inode.s | ././inline  | as -o ufs_inode.o && rm -f ufs_inode.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/builtin/inode_pager.c && /lib/c2 inode_pager.s | ././inline  | as -o inode_pager.o && rm -f inode_pager.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mfs_prim.c && /lib/c2 mfs_prim.s | ././inline  | as -o mfs_prim.o && rm -f mfs_prim.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_server.c && /lib/c2 nfs_server.s | ././inline  | as -o nfs_server.o && rm -f nfs_server.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_subr.c && /lib/c2 nfs_subr.s | ././inline  | as -o nfs_subr.o && rm -f nfs_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_vnodeops.c && /lib/c2 nfs_vnodeops.s | ././inline  | as -o nfs_vnodeops.o && rm -f nfs_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_xdr.c && /lib/c2 nfs_xdr.s | ././inline  | as -o nfs_xdr.o && rm -f nfs_xdr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/specfs/bdev_vnodeops.c && /lib/c2 bdev_vnodeops.s | ././inline  | as -o bdev_vnodeops.o && rm -f bdev_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/specfs/spec_subr.c && /lib/c2 spec_subr.s | ././inline  | as -o spec_subr.o && rm -f spec_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/specfs/spec_vnodeops.c && /lib/c2 spec_vnodeops.s | ././inline  | as -o spec_vnodeops.o && rm -f spec_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/ufs_vnodeops.c && /lib/c2 ufs_vnodeops.s | ././inline  | as -o ufs_vnodeops.o && rm -f ufs_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs.c && /lib/c2 vfs.s | ././inline  | as -o vfs.o && rm -f vfs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_conf.c && /lib/c2 vfs_conf.s | ././inline  | as -o vfs_conf.o && rm -f vfs_conf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_sysnames.c && /lib/c2 vfs_sysnames.s | ././inline  | as -o vfs_sysnames.o && rm -f vfs_sysnames.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_vnode.c && /lib/c2 vfs_vnode.s | ././inline  | as -o vfs_vnode.o && rm -f vfs_vnode.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ioconf.c && /lib/c2 ioconf.s | ././inline  | as -o ioconf.o && rm -f ioconf.s;  ;  ;  
+loading vmunix.sys
+rearranging symbols
+text	data	bss	dec	hex
+453320	81948	126112	661380	a1784
+(null command)
+ln vmunix.sys vmunix; ln vmunix vmunix.CMU-Release2.5b.STD+WS-afs
+(null command)
+(null command)
+(null command)
+/usr/mach/bin/md -f -d `ls *.d`
+
+****************** STD+ANY-afs *******************
+[ linking STD+ANY-afs to STD+WS-afs ]
+[ generating STD+ANY-afs/STD+ANY-afs from conf/MASTER{,.vax}{,.local} ]
+[ generating ./bin/config ]
+`../../bin/config' is up to date.
+[ configuring in STD+ANY-afs ]
+../bin/config -c ../conf  STD+ANY-afs
+[ making STD+ANY-afs ]
+cc -c -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL "-Dvolatile="  ../../../src/kernel/machine/genassym.c
+cc genassym.o
+./a.out > assym.s; rm -f a.out
+cat assym.s  ../../../src/kernel/vax/rpb.s  ../../../src/kernel/vax/scb.s  ../../../src/kernel/vaxnb/biscb.s  ubvec.s  ../../../src/kernel/vax/locore.s  ../../../src/kernel/vaxnb/biglue.s  ubglue.s  >locore.tmp
+mv locore.tmp locore.c
+cc -E -DLOCORE -I../../../src/kernel/machine -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER locore.c >locore.i
+as -o locore.o ../../../src/kernel/vax/pcb.m locore.i
+rm locore.i
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/cmu_syscalls.c && /lib/c2 cmu_syscalls.s | ././inline  | as -o cmu_syscalls.o && rm -f cmu_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/init_main.c && /lib/c2 init_main.s | ././inline  | as -o init_main.o && rm -f init_main.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/init_sysent.c && /lib/c2 init_sysent.s | ././inline  | as -o init_sysent.o && rm -f init_sysent.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_acct.c && /lib/c2 kern_acct.s | ././inline  | as -o kern_acct.o && rm -f kern_acct.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_clock.c && /lib/c2 kern_clock.s | ././inline  | as -o kern_clock.o && rm -f kern_clock.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_descrip.c && /lib/c2 kern_descrip.s | ././inline  | as -o kern_descrip.o && rm -f kern_descrip.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_exec.c && /lib/c2 kern_exec.s | ././inline  | as -o kern_exec.o && rm -f kern_exec.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_exit.c && /lib/c2 kern_exit.s | ././inline  | as -o kern_exit.o && rm -f kern_exit.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_fork.c && /lib/c2 kern_fork.s | ././inline  | as -o kern_fork.o && rm -f kern_fork.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_mman.c && /lib/c2 kern_mman.s | ././inline  | as -o kern_mman.o && rm -f kern_mman.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_proc.c && /lib/c2 kern_proc.s | ././inline  | as -o kern_proc.o && rm -f kern_proc.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_prot.c && /lib/c2 kern_prot.s | ././inline  | as -o kern_prot.o && rm -f kern_prot.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_resource.c && /lib/c2 kern_resource.s | ././inline  | as -o kern_resource.o && rm -f kern_resource.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_sig.c && /lib/c2 kern_sig.s | ././inline  | as -o kern_sig.o && rm -f kern_sig.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_subr.c && /lib/c2 kern_subr.s | ././inline  | as -o kern_subr.o && rm -f kern_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_synch.c && /lib/c2 kern_synch.s | ././inline  | as -o kern_synch.o && rm -f kern_synch.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_time.c && /lib/c2 kern_time.s | ././inline  | as -o kern_time.o && rm -f kern_time.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_xxx.c && /lib/c2 kern_xxx.s | ././inline  | as -o kern_xxx.o && rm -f kern_xxx.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/mach_process.c && /lib/c2 mach_process.s | ././inline  | as -o mach_process.o && rm -f mach_process.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/mach_signal.c && /lib/c2 mach_signal.s | ././inline  | as -o mach_signal.o && rm -f mach_signal.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/quota_sys.c && /lib/c2 quota_sys.s | ././inline  | as -o quota_sys.o && rm -f quota_sys.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_log.c && /lib/c2 subr_log.s | ././inline  | as -o subr_log.o && rm -f subr_log.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_prf.c && /lib/c2 subr_prf.s | ././inline  | as -o subr_prf.o && rm -f subr_prf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_rmap.c && /lib/c2 subr_rmap.s | ././inline  | as -o subr_rmap.o && rm -f subr_rmap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_xxx.c && /lib/c2 subr_xxx.s | ././inline  | as -o subr_xxx.o && rm -f subr_xxx.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/sys_generic.c && /lib/c2 sys_generic.s | ././inline  | as -o sys_generic.o && rm -f sys_generic.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/sys_socket.c && /lib/c2 sys_socket.s | ././inline  | as -o sys_socket.o && rm -f sys_socket.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty.c && /lib/c2 tty.s | ././inline  | as -o tty.o && rm -f tty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty_cmupty.c && /lib/c2 tty_cmupty.s | ././inline  | as -o tty_cmupty.o && rm -f tty_cmupty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty_pty.c && /lib/c2 tty_pty.s | ././inline  | as -o tty_pty.o && rm -f tty_pty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty_tty.c && /lib/c2 tty_tty.s | ././inline  | as -o tty_tty.o && rm -f tty_tty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_alloc.c && /lib/c2 ufs_alloc.s | ././inline  | as -o ufs_alloc.o && rm -f ufs_alloc.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_inode.c && /lib/c2 ufs_inode.s | ././inline  | as -o ufs_inode.o && rm -f ufs_inode.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_physio.c && /lib/c2 ufs_physio.s | ././inline  | as -o ufs_physio.o && rm -f ufs_physio.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_subr.c && /lib/c2 ufs_subr.s | ././inline  | as -o ufs_subr.o && rm -f ufs_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_xxx.c && /lib/c2 ufs_xxx.s | ././inline  | as -o ufs_xxx.o && rm -f ufs_xxx.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_mbuf.c && /lib/c2 uipc_mbuf.s | ././inline  | as -o uipc_mbuf.o && rm -f uipc_mbuf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_socket.c && /lib/c2 uipc_socket.s | ././inline  | as -o uipc_socket.o && rm -f uipc_socket.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_socket2.c && /lib/c2 uipc_socket2.s | ././inline  | as -o uipc_socket2.o && rm -f uipc_socket2.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_syscalls.c && /lib/c2 uipc_syscalls.s | ././inline  | as -o uipc_syscalls.o && rm -f uipc_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_usrreq.c && /lib/c2 uipc_usrreq.s | ././inline  | as -o uipc_usrreq.o && rm -f uipc_usrreq.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/builtin/device_pager.c && /lib/c2 device_pager.s | ././inline  | as -o device_pager.o && rm -f device_pager.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/builtin/inode_pager.c && /lib/c2 inode_pager.s | ././inline  | as -o inode_pager.o && rm -f inode_pager.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/builtin/ux_exception.c && /lib/c2 ux_exception.s | ././inline  | as -o ux_exception.o && rm -f ux_exception.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/conf/param.c && /lib/c2 param.s | ././inline  | as -o param.o && rm -f param.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ast.c && /lib/c2 ast.s | ././inline  | as -o ast.o && rm -f ast.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/clock_prim.c && /lib/c2 clock_prim.s | ././inline  | as -o clock_prim.o && rm -f clock_prim.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/exception.c && /lib/c2 exception.s | ././inline  | as -o exception.o && rm -f exception.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/lock.c && /lib/c2 lock.s | ././inline  | as -o lock.o && rm -f lock.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_basics.c && /lib/c2 ipc_basics.s | ././inline  | as -o ipc_basics.o && rm -f ipc_basics.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_copyin.c && /lib/c2 ipc_copyin.s | ././inline  | as -o ipc_copyin.o && rm -f ipc_copyin.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_copyout.c && /lib/c2 ipc_copyout.s | ././inline  | as -o ipc_copyout.o && rm -f ipc_copyout.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_kport.c && /lib/c2 ipc_kport.s | ././inline  | as -o ipc_kport.o && rm -f ipc_kport.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_kset.c && /lib/c2 ipc_kset.s | ././inline  | as -o ipc_kset.o && rm -f ipc_kset.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_pobj.c && /lib/c2 ipc_pobj.s | ././inline  | as -o ipc_pobj.o && rm -f ipc_pobj.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_port.c && /lib/c2 ipc_port.s | ././inline  | as -o ipc_port.o && rm -f ipc_port.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_tt.c && /lib/c2 ipc_tt.s | ././inline  | as -o ipc_tt.o && rm -f ipc_tt.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_prims.c && /lib/c2 ipc_prims.s | ././inline  | as -o ipc_prims.o && rm -f ipc_prims.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_ptraps.c && /lib/c2 ipc_ptraps.s | ././inline  | as -o ipc_ptraps.o && rm -f ipc_ptraps.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mach_net.c && /lib/c2 mach_net.s | ././inline  | as -o mach_net.o && rm -f mach_net.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mfs_prim.c && /lib/c2 mfs_prim.s | ././inline  | as -o mfs_prim.o && rm -f mfs_prim.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mig_support.c && /lib/c2 mig_support.s | ././inline  | as -o mig_support.o && rm -f mig_support.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/sched_prim.c && /lib/c2 sched_prim.s | ././inline  | as -o sched_prim.o && rm -f sched_prim.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/slave.c && /lib/c2 slave.s | ././inline  | as -o slave.o && rm -f slave.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/syscall_emulation.c && /lib/c2 syscall_emulation.s | ././inline  | as -o syscall_emulation.o && rm -f syscall_emulation.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/syscall_subr.c && /lib/c2 syscall_subr.s | ././inline  | as -o syscall_subr.o && rm -f syscall_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/syscall_sw.c && /lib/c2 syscall_sw.s | ././inline  | as -o syscall_sw.o && rm -f syscall_sw.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/task.c && /lib/c2 task.s | ././inline  | as -o task.o && rm -f task.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/thread.c && /lib/c2 thread.s | ././inline  | as -o thread.o && rm -f thread.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/thread_swap.c && /lib/c2 thread_swap.s | ././inline  | as -o thread_swap.o && rm -f thread_swap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/timer.c && /lib/c2 timer.s | ././inline  | as -o timer.o && rm -f timer.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/xpr.c && /lib/c2 xpr.s | ././inline  | as -o xpr.o && rm -f xpr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL mach/exc_user.c && /lib/c2 exc_user.s | ././inline  | as -o exc_user.o && rm -f exc_user.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL mach/mach_server.c && /lib/c2 mach_server.s | ././inline  | as -o mach_server.o && rm -f mach_server.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL mach/memory_object_default_user.c && /lib/c2 memory_object_default_user.s | ././inline  | as -o memory_object_default_user.o && rm -f memory_object_default_user.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL mach/memory_object_user.c && /lib/c2 memory_object_user.s | ././inline  | as -o memory_object_user.o && rm -f memory_object_user.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL mach_debug/mach_debug_server.c && /lib/c2 mach_debug_server.s | ././inline  | as -o mach_debug_server.o && rm -f mach_debug_server.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/if.c && /lib/c2 if.s | ././inline  | as -o if.o && rm -f if.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/if_loop.c && /lib/c2 if_loop.s | ././inline  | as -o if_loop.o && rm -f if_loop.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/netisr.c && /lib/c2 netisr.s | ././inline  | as -o netisr.o && rm -f netisr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/route.c && /lib/c2 route.s | ././inline  | as -o route.o && rm -f route.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/if_ether.c && /lib/c2 if_ether.s | ././inline  | as -o if_ether.o && rm -f if_ether.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/in.c && /lib/c2 in.s | ././inline  | as -o in.o && rm -f in.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/in_pcb.c && /lib/c2 in_pcb.s | ././inline  | as -o in_pcb.o && rm -f in_pcb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/ip_output.c && /lib/c2 ip_output.s | ././inline  | as -o ip_output.o && rm -f ip_output.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/udp_usrreq.c && /lib/c2 udp_usrreq.s | ././inline  | as -o udp_usrreq.o && rm -f udp_usrreq.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_server.c && /lib/c2 nfs_server.s | ././inline  | as -o nfs_server.o && rm -f nfs_server.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_subr.c && /lib/c2 nfs_subr.s | ././inline  | as -o nfs_subr.o && rm -f nfs_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_vfsops.c && /lib/c2 nfs_vfsops.s | ././inline  | as -o nfs_vfsops.o && rm -f nfs_vfsops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_vnodeops.c && /lib/c2 nfs_vnodeops.s | ././inline  | as -o nfs_vnodeops.o && rm -f nfs_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_xdr.c && /lib/c2 nfs_xdr.s | ././inline  | as -o nfs_xdr.o && rm -f nfs_xdr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_control.c && /lib/c2 rfs_control.s | ././inline  | as -o rfs_control.o && rm -f rfs_control.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_descrip.c && /lib/c2 rfs_descrip.s | ././inline  | as -o rfs_descrip.o && rm -f rfs_descrip.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_init.c && /lib/c2 rfs_init.s | ././inline  | as -o rfs_init.o && rm -f rfs_init.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_kern.c && /lib/c2 rfs_kern.s | ././inline  | as -o rfs_kern.o && rm -f rfs_kern.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_socket.c && /lib/c2 rfs_socket.s | ././inline  | as -o rfs_socket.o && rm -f rfs_socket.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_subr.c && /lib/c2 rfs_subr.s | ././inline  | as -o rfs_subr.o && rm -f rfs_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_syscalls.c && /lib/c2 rfs_syscalls.s | ././inline  | as -o rfs_syscalls.o && rm -f rfs_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rpc/auth_kern.c && /lib/c2 auth_kern.s | ././inline  | as -o auth_kern.o && rm -f auth_kern.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rpc/authunix_prot.c && /lib/c2 authunix_prot.s | ././inline  | as -o authunix_prot.o && rm -f authunix_prot.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rpc/clnt_kudp.c && /lib/c2 clnt_kudp.s | ././inline  | as -o clnt_kudp.o && rm -f clnt_kudp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rpc/kudp_fastsend.c && /lib/c2 kudp_fastsend.s | ././inline  | as -o kudp_fastsend.o && rm -f kudp_fastsend.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rpc/pmap_kgetport.c && /lib/c2 pmap_kgetport.s | ././inline  | as -o pmap_kgetport.o && rm -f pmap_kgetport.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/specfs/bdev_vnodeops.c && /lib/c2 bdev_vnodeops.s | ././inline  | as -o bdev_vnodeops.o && rm -f bdev_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/specfs/spec_subr.c && /lib/c2 spec_subr.s | ././inline  | as -o spec_subr.o && rm -f spec_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/specfs/spec_vnodeops.c && /lib/c2 spec_vnodeops.s | ././inline  | as -o spec_vnodeops.o && rm -f spec_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/ufs_bmap.c && /lib/c2 ufs_bmap.s | ././inline  | as -o ufs_bmap.o && rm -f ufs_bmap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/ufs_dir.c && /lib/c2 ufs_dir.s | ././inline  | as -o ufs_dir.o && rm -f ufs_dir.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/ufs_vfsops.c && /lib/c2 ufs_vfsops.s | ././inline  | as -o ufs_vfsops.o && rm -f ufs_vfsops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/ufs_vnodeops.c && /lib/c2 ufs_vnodeops.s | ././inline  | as -o ufs_vnodeops.o && rm -f ufs_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs.c && /lib/c2 vfs.s | ././inline  | as -o vfs.o && rm -f vfs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_bio.c && /lib/c2 vfs_bio.s | ././inline  | as -o vfs_bio.o && rm -f vfs_bio.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_dnlc.c && /lib/c2 vfs_dnlc.s | ././inline  | as -o vfs_dnlc.o && rm -f vfs_dnlc.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_io.c && /lib/c2 vfs_io.s | ././inline  | as -o vfs_io.o && rm -f vfs_io.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_lookup.c && /lib/c2 vfs_lookup.s | ././inline  | as -o vfs_lookup.o && rm -f vfs_lookup.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_syscalls.c && /lib/c2 vfs_syscalls.s | ././inline  | as -o vfs_syscalls.o && rm -f vfs_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_sysnames.c && /lib/c2 vfs_sysnames.s | ././inline  | as -o vfs_sysnames.o && rm -f vfs_sysnames.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_vnode.c && /lib/c2 vfs_vnode.s | ././inline  | as -o vfs_vnode.o && rm -f vfs_vnode.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/memory_object.c && /lib/c2 memory_object.s | ././inline  | as -o memory_object.o && rm -f memory_object.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_fault.c && /lib/c2 vm_fault.s | ././inline  | as -o vm_fault.o && rm -f vm_fault.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_init.c && /lib/c2 vm_init.s | ././inline  | as -o vm_init.o && rm -f vm_init.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_kern.c && /lib/c2 vm_kern.s | ././inline  | as -o vm_kern.o && rm -f vm_kern.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_map.c && /lib/c2 vm_map.s | ././inline  | as -o vm_map.o && rm -f vm_map.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_object.c && /lib/c2 vm_object.s | ././inline  | as -o vm_object.o && rm -f vm_object.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_pageout.c && /lib/c2 vm_pageout.s | ././inline  | as -o vm_pageout.o && rm -f vm_pageout.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_resident.c && /lib/c2 vm_resident.s | ././inline  | as -o vm_resident.o && rm -f vm_resident.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_unix.c && /lib/c2 vm_unix.s | ././inline  | as -o vm_unix.o && rm -f vm_unix.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_user.c && /lib/c2 vm_user.s | ././inline  | as -o vm_user.o && rm -f vm_user.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ioconf.c && /lib/c2 ioconf.s | ././inline  | as -o ioconf.o && rm -f ioconf.s;  ;  ;  
+cc -ES -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER ../../../src/kernel/emul/vaxexception.s | as -o vaxexception.o;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/autoconf.c && /lib/c2 -i autoconf.s | ././inline  | as -o autoconf.o  && rm -f autoconf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/bi.c && /lib/c2 -i bi.s | ././inline  | as -o bi.o  && rm -f bi.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/clock.c && /lib/c2 clock.s | ././inline  | as -o clock.o && rm -f clock.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/conf.c && /lib/c2 conf.s | ././inline  | as -o conf.o && rm -f conf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/cons.c && /lib/c2 cons.s | ././inline  | as -o cons.o && rm -f cons.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/cpudata.c && /lib/c2 cpudata.s | ././inline  | as -o cpudata.o && rm -f cpudata.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/crl.c && /lib/c2 crl.s | ././inline  | as -o crl.o && rm -f crl.s;  ;  ;  
+cc -ES -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER ../../../src/kernel/vax/dfloat.s | as -o dfloat.o;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/flp.c && /lib/c2 flp.s | ././inline  | as -o flp.o && rm -f flp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/ka630.c && /lib/c2 ka630.s | ././inline  | as -o ka630.o && rm -f ka630.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/ka650.c && /lib/c2 ka650.s | ././inline  | as -o ka650.o && rm -f ka650.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb.c && /lib/c2 kdb.s | ././inline  | as -o kdb.o && rm -f kdb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/access.c && /lib/c2 access.s | ././inline  | as -o access.o && rm -f access.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/command.c && /lib/c2 command.s | ././inline  | as -o command.o && rm -f command.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/expr.c && /lib/c2 expr.s | ././inline  | as -o expr.o && rm -f expr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/format.c && /lib/c2 format.s | ././inline  | as -o format.o && rm -f format.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/input.c && /lib/c2 input.s | ././inline  | as -o input.o && rm -f input.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/kdb_main.c && /lib/c2 kdb_main.s | ././inline  | as -o kdb_main.o && rm -f kdb_main.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/opset.c && /lib/c2 opset.s | ././inline  | as -o opset.o && rm -f opset.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/optab.c && /lib/c2 optab.s | ././inline  | as -o optab.o && rm -f optab.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/output.c && /lib/c2 output.s | ././inline  | as -o output.o && rm -f output.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/pcs.c && /lib/c2 pcs.s | ././inline  | as -o pcs.o && rm -f pcs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/print.c && /lib/c2 print.s | ././inline  | as -o print.o && rm -f print.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/runpcs.c && /lib/c2 runpcs.s | ././inline  | as -o runpcs.o && rm -f runpcs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/setup.c && /lib/c2 setup.s | ././inline  | as -o setup.o && rm -f setup.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/stack.c && /lib/c2 stack.s | ././inline  | as -o stack.o && rm -f stack.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/sym.c && /lib/c2 sym.s | ././inline  | as -o sym.o && rm -f sym.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/ma780.c && /lib/c2 ma780.s | ././inline  | as -o ma780.o && rm -f ma780.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/ma780subrs.c && /lib/c2 ma780subrs.s | ././inline  | as -o ma780subrs.o && rm -f ma780subrs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/machdep.c && /lib/c2 machdep.s | ././inline  | as -o machdep.o && rm -f machdep.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/mem.c && /lib/c2 mem.s | ././inline  | as -o mem.o && rm -f mem.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/mscp.c && /lib/c2 mscp.s | ././inline  | as -o mscp.o && rm -f mscp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/pcb.c && /lib/c2 pcb.s | ././inline  | as -o pcb.o && rm -f pcb.s;  ;  ;  
+cc -ES -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER ../../../src/kernel/vax/phys.s | as -o phys.o;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/pmap.c && /lib/c2 pmap.s | ././inline  | as -o pmap.o && rm -f pmap.s;  ;  ;  
+cc -ES -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER ../../../src/kernel/vax/rxcd.s | as -o rxcd.o;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/sys_machdep.c && /lib/c2 sys_machdep.s | ././inline  | as -o sys_machdep.o && rm -f sys_machdep.s;  ;  ;  
+cc -ES -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER ../../../src/kernel/vax/thread_bootstrap.s | as -o thread_bootstrap.o;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/trap.c && /lib/c2 trap.s | ././inline  | as -o trap.o && rm -f trap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/tu.c && /lib/c2 tu.s | ././inline  | as -o tu.o && rm -f tu.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/ufs_machdep.c && /lib/c2 ufs_machdep.s | ././inline  | as -o ufs_machdep.o && rm -f ufs_machdep.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/vax_init.c && /lib/c2 vax_init.s | ././inline  | as -o vax_init.o && rm -f vax_init.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/vm_machdep.c && /lib/c2 vm_machdep.s | ././inline  | as -o vm_machdep.o && rm -f vm_machdep.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/enet.c && /lib/c2 enet.s | ././inline  | as -o enet.o && rm -f enet.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_de.c && /lib/c2 -i if_de.s | ././inline  | as -o if_de.o  && rm -f if_de.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_en.c && /lib/c2 -i if_en.s | ././inline  | as -o if_en.o  && rm -f if_en.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_il.c && /lib/c2 -i if_il.s | ././inline  | as -o if_il.o  && rm -f if_il.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_ni.c && /lib/c2 -i if_ni.s | ././inline  | as -o if_ni.o  && rm -f if_ni.s;  ;  ;  
+Assembler:
+"<stdin>", line 2842: WARNING: Caution: New Opcodes
+"<stdin>", line 2842: WARNING: These are not defined for all implementations of the VAX architecture.
+
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_qe.c && /lib/c2 -i if_qe.s | ././inline  | as -o if_qe.o  && rm -f if_qe.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_uba.c && /lib/c2 -i if_uba.s | ././inline  | as -o if_uba.o  && rm -f if_uba.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxnb/biconf.c && /lib/c2 -i biconf.s | ././inline  | as -o biconf.o  && rm -f biconf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxnb/cca.c && /lib/c2 cca.s | ././inline  | as -o cca.o && rm -f cca.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxnb/ka62a.c && /lib/c2 ka62a.s | ././inline  | as -o ka62a.o && rm -f ka62a.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxnb/ka820.c && /lib/c2 ka820.s | ././inline  | as -o ka820.o && rm -f ka820.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxnb/ka88.c && /lib/c2 ka88.s | ././inline  | as -o ka88.o && rm -f ka88.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxnb/vaxmp.c && /lib/c2 vaxmp.s | ././inline  | as -o vaxmp.o && rm -f vaxmp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxmba/hp.c && /lib/c2 -i hp.s | ././inline  | as -o hp.o  && rm -f hp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxmba/ht.c && /lib/c2 -i ht.s | ././inline  | as -o ht.o  && rm -f ht.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxmba/mba.c && /lib/c2 -i mba.s | ././inline  | as -o mba.o  && rm -f mba.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dhu.c && /lib/c2 -i dhu.s | ././inline  | as -o dhu.o  && rm -f dhu.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dmf.c && /lib/c2 -i dmf.s | ././inline  | as -o dmf.o  && rm -f dmf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dmz.c && /lib/c2 -i dmz.s | ././inline  | as -o dmz.o  && rm -f dmz.s;  ;  ;  
+../../../src/kernel/vaxuba/dmz.c: 121: TRUE redefined
+../../../src/kernel/vaxuba/dmz.c: 122: FALSE redefined
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dr.c && /lib/c2 -i dr.s | ././inline  | as -o dr.o  && rm -f dr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/drb.c && /lib/c2 -i drb.s | ././inline  | as -o drb.o  && rm -f drb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/ds.c && /lib/c2 -i ds.s | ././inline  | as -o ds.o  && rm -f ds.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dz.c && /lib/c2 -i dz.s | ././inline  | as -o dz.o  && rm -f dz.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/fps.c && /lib/c2 -i fps.s | ././inline  | as -o fps.o  && rm -f fps.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/gmr.c && /lib/c2 -i gmr.s | ././inline  | as -o gmr.o  && rm -f gmr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/ip.c && /lib/c2 -i ip.s | ././inline  | as -o ip.o  && rm -f ip.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/qd.c && /lib/c2 -i qd.s | ././inline  | as -o qd.o  && rm -f qd.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/qv.c && /lib/c2 -i qv.s | ././inline  | as -o qv.o  && rm -f qv.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/rk.c && /lib/c2 -i rk.s | ././inline  | as -o rk.o  && rm -f rk.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/tmscp.c && /lib/c2 -i tmscp.s | ././inline  | as -o tmscp.o  && rm -f tmscp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/ts.c && /lib/c2 -i ts.s | ././inline  | as -o ts.o  && rm -f ts.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/uba.c && /lib/c2 -i uba.s | ././inline  | as -o uba.o  && rm -f uba.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/uda.c && /lib/c2 -i uda.s | ././inline  | as -o uda.o  && rm -f uda.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/ut.c && /lib/c2 -i ut.s | ././inline  | as -o ut.o  && rm -f ut.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/vp.c && /lib/c2 -i vp.s | ././inline  | as -o vp.o  && rm -f vp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/machine/swapgeneric.c && /lib/c2 swapgeneric.s | ././inline  | as -o swapgeneric.o && rm -f swapgeneric.s
+(null command)
+(null command)
+(null command)
+loading vmunix.sys
+rearranging symbols
+text	data	bss	dec	hex
+545788	108948	164380	819116	c7fac
+(null command)
+ln vmunix.sys vmunix; ln vmunix vmunix.CMU-Release2.5b.STD+ANY-afs
+(null command)
+(null command)
+(null command)
+/usr/mach/bin/md -f -d `ls *.d`
+
+****************** STD+MP+16-afs *******************
+[ generating ./bin/config ]
+`../../bin/config' is up to date.
+[ configuring in STD+MP+16-afs ]
+../bin/config -c ../conf  STD+MP+16-afs
+[ making STD+MP+16-afs ]
+cc -c -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL "-Dvolatile="  ../../../src/kernel/machine/genassym.c
+cc genassym.o
+./a.out > assym.s; rm -f a.out
+cat assym.s  ../../../src/kernel/vax/rpb.s  ../../../src/kernel/vax/scb.s  ../../../src/kernel/vaxnb/biscb.s  ubvec.s  ../../../src/kernel/vax/locore.s  ../../../src/kernel/vaxnb/biglue.s  ubglue.s  >locore.tmp
+mv locore.tmp locore.c
+cc -E -DLOCORE -I../../../src/kernel/machine -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER locore.c >locore.i
+as -o locore.o ../../../src/kernel/vax/pcb.m locore.i
+rm locore.i
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/cmu_syscalls.c && /lib/c2 cmu_syscalls.s | ././inline  | as -o cmu_syscalls.o && rm -f cmu_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/init_main.c && /lib/c2 init_main.s | ././inline  | as -o init_main.o && rm -f init_main.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/init_sysent.c && /lib/c2 init_sysent.s | ././inline  | as -o init_sysent.o && rm -f init_sysent.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_acct.c && /lib/c2 kern_acct.s | ././inline  | as -o kern_acct.o && rm -f kern_acct.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_clock.c && /lib/c2 kern_clock.s | ././inline  | as -o kern_clock.o && rm -f kern_clock.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_descrip.c && /lib/c2 kern_descrip.s | ././inline  | as -o kern_descrip.o && rm -f kern_descrip.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_exec.c && /lib/c2 kern_exec.s | ././inline  | as -o kern_exec.o && rm -f kern_exec.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_exit.c && /lib/c2 kern_exit.s | ././inline  | as -o kern_exit.o && rm -f kern_exit.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_fork.c && /lib/c2 kern_fork.s | ././inline  | as -o kern_fork.o && rm -f kern_fork.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_mman.c && /lib/c2 kern_mman.s | ././inline  | as -o kern_mman.o && rm -f kern_mman.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_proc.c && /lib/c2 kern_proc.s | ././inline  | as -o kern_proc.o && rm -f kern_proc.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_prot.c && /lib/c2 kern_prot.s | ././inline  | as -o kern_prot.o && rm -f kern_prot.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_resource.c && /lib/c2 kern_resource.s | ././inline  | as -o kern_resource.o && rm -f kern_resource.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_sig.c && /lib/c2 kern_sig.s | ././inline  | as -o kern_sig.o && rm -f kern_sig.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_subr.c && /lib/c2 kern_subr.s | ././inline  | as -o kern_subr.o && rm -f kern_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_synch.c && /lib/c2 kern_synch.s | ././inline  | as -o kern_synch.o && rm -f kern_synch.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_time.c && /lib/c2 kern_time.s | ././inline  | as -o kern_time.o && rm -f kern_time.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_xxx.c && /lib/c2 kern_xxx.s | ././inline  | as -o kern_xxx.o && rm -f kern_xxx.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/mach_process.c && /lib/c2 mach_process.s | ././inline  | as -o mach_process.o && rm -f mach_process.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/mach_signal.c && /lib/c2 mach_signal.s | ././inline  | as -o mach_signal.o && rm -f mach_signal.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/quota_sys.c && /lib/c2 quota_sys.s | ././inline  | as -o quota_sys.o && rm -f quota_sys.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_log.c && /lib/c2 subr_log.s | ././inline  | as -o subr_log.o && rm -f subr_log.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_prf.c && /lib/c2 subr_prf.s | ././inline  | as -o subr_prf.o && rm -f subr_prf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_rmap.c && /lib/c2 subr_rmap.s | ././inline  | as -o subr_rmap.o && rm -f subr_rmap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_xxx.c && /lib/c2 subr_xxx.s | ././inline  | as -o subr_xxx.o && rm -f subr_xxx.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/sys_generic.c && /lib/c2 sys_generic.s | ././inline  | as -o sys_generic.o && rm -f sys_generic.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/sys_socket.c && /lib/c2 sys_socket.s | ././inline  | as -o sys_socket.o && rm -f sys_socket.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty.c && /lib/c2 tty.s | ././inline  | as -o tty.o && rm -f tty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty_cmupty.c && /lib/c2 tty_cmupty.s | ././inline  | as -o tty_cmupty.o && rm -f tty_cmupty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty_pty.c && /lib/c2 tty_pty.s | ././inline  | as -o tty_pty.o && rm -f tty_pty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty_tty.c && /lib/c2 tty_tty.s | ././inline  | as -o tty_tty.o && rm -f tty_tty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_alloc.c && /lib/c2 ufs_alloc.s | ././inline  | as -o ufs_alloc.o && rm -f ufs_alloc.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_inode.c && /lib/c2 ufs_inode.s | ././inline  | as -o ufs_inode.o && rm -f ufs_inode.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_physio.c && /lib/c2 ufs_physio.s | ././inline  | as -o ufs_physio.o && rm -f ufs_physio.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_subr.c && /lib/c2 ufs_subr.s | ././inline  | as -o ufs_subr.o && rm -f ufs_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_xxx.c && /lib/c2 ufs_xxx.s | ././inline  | as -o ufs_xxx.o && rm -f ufs_xxx.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_mbuf.c && /lib/c2 uipc_mbuf.s | ././inline  | as -o uipc_mbuf.o && rm -f uipc_mbuf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_socket.c && /lib/c2 uipc_socket.s | ././inline  | as -o uipc_socket.o && rm -f uipc_socket.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_socket2.c && /lib/c2 uipc_socket2.s | ././inline  | as -o uipc_socket2.o && rm -f uipc_socket2.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_syscalls.c && /lib/c2 uipc_syscalls.s | ././inline  | as -o uipc_syscalls.o && rm -f uipc_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_usrreq.c && /lib/c2 uipc_usrreq.s | ././inline  | as -o uipc_usrreq.o && rm -f uipc_usrreq.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/builtin/inode_pager.c && /lib/c2 inode_pager.s | ././inline  | as -o inode_pager.o && rm -f inode_pager.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/builtin/ux_exception.c && /lib/c2 ux_exception.s | ././inline  | as -o ux_exception.o && rm -f ux_exception.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/conf/param.c && /lib/c2 param.s | ././inline  | as -o param.o && rm -f param.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ast.c && /lib/c2 ast.s | ././inline  | as -o ast.o && rm -f ast.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/exception.c && /lib/c2 exception.s | ././inline  | as -o exception.o && rm -f exception.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_basics.c && /lib/c2 ipc_basics.s | ././inline  | as -o ipc_basics.o && rm -f ipc_basics.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_kset.c && /lib/c2 ipc_kset.s | ././inline  | as -o ipc_kset.o && rm -f ipc_kset.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_tt.c && /lib/c2 ipc_tt.s | ././inline  | as -o ipc_tt.o && rm -f ipc_tt.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_prims.c && /lib/c2 ipc_prims.s | ././inline  | as -o ipc_prims.o && rm -f ipc_prims.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mach_net.c && /lib/c2 mach_net.s | ././inline  | as -o mach_net.o && rm -f mach_net.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mach_timedev.c && /lib/c2 mach_timedev.s | ././inline  | as -o mach_timedev.o && rm -f mach_timedev.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mfs_prim.c && /lib/c2 mfs_prim.s | ././inline  | as -o mfs_prim.o && rm -f mfs_prim.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/slave.c && /lib/c2 slave.s | ././inline  | as -o slave.o && rm -f slave.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/syscall_subr.c && /lib/c2 syscall_subr.s | ././inline  | as -o syscall_subr.o && rm -f syscall_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/dli.c && /lib/c2 dli.s | ././inline  | as -o dli.o && rm -f dli.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/if.c && /lib/c2 if.s | ././inline  | as -o if.o && rm -f if.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/if_loop.c && /lib/c2 if_loop.s | ././inline  | as -o if_loop.o && rm -f if_loop.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/raw_cb.c && /lib/c2 raw_cb.s | ././inline  | as -o raw_cb.o && rm -f raw_cb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/raw_usrreq.c && /lib/c2 raw_usrreq.s | ././inline  | as -o raw_usrreq.o && rm -f raw_usrreq.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/route.c && /lib/c2 route.s | ././inline  | as -o route.o && rm -f route.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/if_ether.c && /lib/c2 if_ether.s | ././inline  | as -o if_ether.o && rm -f if_ether.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/in.c && /lib/c2 in.s | ././inline  | as -o in.o && rm -f in.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/in_pcb.c && /lib/c2 in_pcb.s | ././inline  | as -o in_pcb.o && rm -f in_pcb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/ip_input.c && /lib/c2 ip_input.s | ././inline  | as -o ip_input.o && rm -f ip_input.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/ip_output.c && /lib/c2 ip_output.s | ././inline  | as -o ip_output.o && rm -f ip_output.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/raw_ip.c && /lib/c2 raw_ip.s | ././inline  | as -o raw_ip.o && rm -f raw_ip.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/tcp_debug.c && /lib/c2 tcp_debug.s | ././inline  | as -o tcp_debug.o && rm -f tcp_debug.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/tcp_input.c && /lib/c2 tcp_input.s | ././inline  | as -o tcp_input.o && rm -f tcp_input.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/tcp_output.c && /lib/c2 tcp_output.s | ././inline  | as -o tcp_output.o && rm -f tcp_output.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/tcp_subr.c && /lib/c2 tcp_subr.s | ././inline  | as -o tcp_subr.o && rm -f tcp_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/tcp_timer.c && /lib/c2 tcp_timer.s | ././inline  | as -o tcp_timer.o && rm -f tcp_timer.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/tcp_usrreq.c && /lib/c2 tcp_usrreq.s | ././inline  | as -o tcp_usrreq.o && rm -f tcp_usrreq.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/udp_usrreq.c && /lib/c2 udp_usrreq.s | ././inline  | as -o udp_usrreq.o && rm -f udp_usrreq.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_server.c && /lib/c2 nfs_server.s | ././inline  | as -o nfs_server.o && rm -f nfs_server.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_subr.c && /lib/c2 nfs_subr.s | ././inline  | as -o nfs_subr.o && rm -f nfs_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_vfsops.c && /lib/c2 nfs_vfsops.s | ././inline  | as -o nfs_vfsops.o && rm -f nfs_vfsops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_vnodeops.c && /lib/c2 nfs_vnodeops.s | ././inline  | as -o nfs_vnodeops.o && rm -f nfs_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/nfs/nfs_xdr.c && /lib/c2 nfs_xdr.s | ././inline  | as -o nfs_xdr.o && rm -f nfs_xdr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_control.c && /lib/c2 rfs_control.s | ././inline  | as -o rfs_control.o && rm -f rfs_control.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_descrip.c && /lib/c2 rfs_descrip.s | ././inline  | as -o rfs_descrip.o && rm -f rfs_descrip.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_init.c && /lib/c2 rfs_init.s | ././inline  | as -o rfs_init.o && rm -f rfs_init.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_kern.c && /lib/c2 rfs_kern.s | ././inline  | as -o rfs_kern.o && rm -f rfs_kern.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_socket.c && /lib/c2 rfs_socket.s | ././inline  | as -o rfs_socket.o && rm -f rfs_socket.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_subr.c && /lib/c2 rfs_subr.s | ././inline  | as -o rfs_subr.o && rm -f rfs_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_syscalls.c && /lib/c2 rfs_syscalls.s | ././inline  | as -o rfs_syscalls.o && rm -f rfs_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rpc/auth_kern.c && /lib/c2 auth_kern.s | ././inline  | as -o auth_kern.o && rm -f auth_kern.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rpc/authunix_prot.c && /lib/c2 authunix_prot.s | ././inline  | as -o authunix_prot.o && rm -f authunix_prot.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rpc/clnt_kudp.c && /lib/c2 clnt_kudp.s | ././inline  | as -o clnt_kudp.o && rm -f clnt_kudp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rpc/kudp_fastsend.c && /lib/c2 kudp_fastsend.s | ././inline  | as -o kudp_fastsend.o && rm -f kudp_fastsend.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rpc/pmap_kgetport.c && /lib/c2 pmap_kgetport.s | ././inline  | as -o pmap_kgetport.o && rm -f pmap_kgetport.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/specfs/bdev_vnodeops.c && /lib/c2 bdev_vnodeops.s | ././inline  | as -o bdev_vnodeops.o && rm -f bdev_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/specfs/spec_subr.c && /lib/c2 spec_subr.s | ././inline  | as -o spec_subr.o && rm -f spec_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/specfs/spec_vnodeops.c && /lib/c2 spec_vnodeops.s | ././inline  | as -o spec_vnodeops.o && rm -f spec_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/ufs_bmap.c && /lib/c2 ufs_bmap.s | ././inline  | as -o ufs_bmap.o && rm -f ufs_bmap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/ufs_dir.c && /lib/c2 ufs_dir.s | ././inline  | as -o ufs_dir.o && rm -f ufs_dir.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/ufs_vfsops.c && /lib/c2 ufs_vfsops.s | ././inline  | as -o ufs_vfsops.o && rm -f ufs_vfsops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/ufs_vnodeops.c && /lib/c2 ufs_vnodeops.s | ././inline  | as -o ufs_vnodeops.o && rm -f ufs_vnodeops.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs.c && /lib/c2 vfs.s | ././inline  | as -o vfs.o && rm -f vfs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_bio.c && /lib/c2 vfs_bio.s | ././inline  | as -o vfs_bio.o && rm -f vfs_bio.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_conf.c && /lib/c2 vfs_conf.s | ././inline  | as -o vfs_conf.o && rm -f vfs_conf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_dnlc.c && /lib/c2 vfs_dnlc.s | ././inline  | as -o vfs_dnlc.o && rm -f vfs_dnlc.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_io.c && /lib/c2 vfs_io.s | ././inline  | as -o vfs_io.o && rm -f vfs_io.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_lookup.c && /lib/c2 vfs_lookup.s | ././inline  | as -o vfs_lookup.o && rm -f vfs_lookup.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_pathname.c && /lib/c2 vfs_pathname.s | ././inline  | as -o vfs_pathname.o && rm -f vfs_pathname.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_syscalls.c && /lib/c2 vfs_syscalls.s | ././inline  | as -o vfs_syscalls.o && rm -f vfs_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_sysnames.c && /lib/c2 vfs_sysnames.s | ././inline  | as -o vfs_sysnames.o && rm -f vfs_sysnames.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vfs/vfs_vnode.c && /lib/c2 vfs_vnode.s | ././inline  | as -o vfs_vnode.o && rm -f vfs_vnode.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_unix.c && /lib/c2 vm_unix.s | ././inline  | as -o vm_unix.o && rm -f vm_unix.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ioconf.c && /lib/c2 ioconf.s | ././inline  | as -o ioconf.o && rm -f ioconf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/cons.c && /lib/c2 cons.s | ././inline  | as -o cons.o && rm -f cons.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/crl.c && /lib/c2 crl.s | ././inline  | as -o crl.o && rm -f crl.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/flp.c && /lib/c2 flp.s | ././inline  | as -o flp.o && rm -f flp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb.c && /lib/c2 kdb.s | ././inline  | as -o kdb.o && rm -f kdb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/access.c && /lib/c2 access.s | ././inline  | as -o access.o && rm -f access.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/command.c && /lib/c2 command.s | ././inline  | as -o command.o && rm -f command.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/expr.c && /lib/c2 expr.s | ././inline  | as -o expr.o && rm -f expr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/format.c && /lib/c2 format.s | ././inline  | as -o format.o && rm -f format.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/input.c && /lib/c2 input.s | ././inline  | as -o input.o && rm -f input.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/kdb_main.c && /lib/c2 kdb_main.s | ././inline  | as -o kdb_main.o && rm -f kdb_main.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/opset.c && /lib/c2 opset.s | ././inline  | as -o opset.o && rm -f opset.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/optab.c && /lib/c2 optab.s | ././inline  | as -o optab.o && rm -f optab.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/output.c && /lib/c2 output.s | ././inline  | as -o output.o && rm -f output.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/pcs.c && /lib/c2 pcs.s | ././inline  | as -o pcs.o && rm -f pcs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/print.c && /lib/c2 print.s | ././inline  | as -o print.o && rm -f print.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/runpcs.c && /lib/c2 runpcs.s | ././inline  | as -o runpcs.o && rm -f runpcs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/setup.c && /lib/c2 setup.s | ././inline  | as -o setup.o && rm -f setup.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/stack.c && /lib/c2 stack.s | ././inline  | as -o stack.o && rm -f stack.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/sym.c && /lib/c2 sym.s | ././inline  | as -o sym.o && rm -f sym.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/machdep.c && /lib/c2 machdep.s | ././inline  | as -o machdep.o && rm -f machdep.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/mem.c && /lib/c2 mem.s | ././inline  | as -o mem.o && rm -f mem.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/mscp.c && /lib/c2 mscp.s | ././inline  | as -o mscp.o && rm -f mscp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/pcb.c && /lib/c2 pcb.s | ././inline  | as -o pcb.o && rm -f pcb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/sys_machdep.c && /lib/c2 sys_machdep.s | ././inline  | as -o sys_machdep.o && rm -f sys_machdep.s;  ;  ;  
+cc -ES -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER ../../../src/kernel/vax/thread_bootstrap.s | as -o thread_bootstrap.o;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/trap.c && /lib/c2 trap.s | ././inline  | as -o trap.o && rm -f trap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/tu.c && /lib/c2 tu.s | ././inline  | as -o tu.o && rm -f tu.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/ufs_machdep.c && /lib/c2 ufs_machdep.s | ././inline  | as -o ufs_machdep.o && rm -f ufs_machdep.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/vm_machdep.c && /lib/c2 vm_machdep.s | ././inline  | as -o vm_machdep.o && rm -f vm_machdep.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_de.c && /lib/c2 -i if_de.s | ././inline  | as -o if_de.o  && rm -f if_de.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_il.c && /lib/c2 -i if_il.s | ././inline  | as -o if_il.o  && rm -f if_il.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_ni.c && /lib/c2 -i if_ni.s | ././inline  | as -o if_ni.o  && rm -f if_ni.s;  ;  ;  
+Assembler:
+"<stdin>", line 2845: WARNING: Caution: New Opcodes
+"<stdin>", line 2845: WARNING: These are not defined for all implementations of the VAX architecture.
+
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxmba/hp.c && /lib/c2 -i hp.s | ././inline  | as -o hp.o  && rm -f hp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxmba/mba.c && /lib/c2 -i mba.s | ././inline  | as -o mba.o  && rm -f mba.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dmf.c && /lib/c2 -i dmf.s | ././inline  | as -o dmf.o  && rm -f dmf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dz.c && /lib/c2 -i dz.s | ././inline  | as -o dz.o  && rm -f dz.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/rk.c && /lib/c2 -i rk.s | ././inline  | as -o rk.o  && rm -f rk.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/uba.c && /lib/c2 -i uba.s | ././inline  | as -o uba.o  && rm -f uba.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/uda.c && /lib/c2 -i uda.s | ././inline  | as -o uda.o  && rm -f uda.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/ut.c && /lib/c2 -i ut.s | ././inline  | as -o ut.o  && rm -f ut.s;  ;  ;  
+loading vmunix.sys
+rearranging symbols
+text	data	bss	dec	hex
+495420	97480	141060	733960	b3308
+(null command)
+ln vmunix.sys vmunix; ln vmunix vmunix.CMU-Release2.5b.STD+MP+16-afs
+(null command)
+(null command)
+(null command)
+/usr/mach/bin/md -f -d `ls *.d`
+
+****************** STD+MP+16-afs-nfs *******************
+[ generating ./bin/config ]
+`../../bin/config' is up to date.
+[ configuring in STD+MP+16-afs-nfs ]
+../bin/config -c ../conf  STD+MP+16-afs-nfs
+[ making STD+MP+16-afs-nfs ]
+cc -c -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL "-Dvolatile="  ../../../src/kernel/machine/genassym.c
+cc genassym.o
+./a.out > assym.s; rm -f a.out
+cat assym.s  ../../../src/kernel/vax/rpb.s  ../../../src/kernel/vax/scb.s  ../../../src/kernel/vaxnb/biscb.s  ubvec.s  ../../../src/kernel/vax/locore.s  ../../../src/kernel/vaxnb/biglue.s  ubglue.s  >locore.tmp
+mv locore.tmp locore.c
+cc -E -DLOCORE -I../../../src/kernel/machine -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER locore.c >locore.i
+as -o locore.o ../../../src/kernel/vax/pcb.m locore.i
+rm locore.i
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/cmu_syscalls.c && /lib/c2 cmu_syscalls.s | ././inline  | as -o cmu_syscalls.o && rm -f cmu_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/init_main.c && /lib/c2 init_main.s | ././inline  | as -o init_main.o && rm -f init_main.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/init_sysent.c && /lib/c2 init_sysent.s | ././inline  | as -o init_sysent.o && rm -f init_sysent.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_acct.c && /lib/c2 kern_acct.s | ././inline  | as -o kern_acct.o && rm -f kern_acct.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_clock.c && /lib/c2 kern_clock.s | ././inline  | as -o kern_clock.o && rm -f kern_clock.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_descrip.c && /lib/c2 kern_descrip.s | ././inline  | as -o kern_descrip.o && rm -f kern_descrip.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_exec.c && /lib/c2 kern_exec.s | ././inline  | as -o kern_exec.o && rm -f kern_exec.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_exit.c && /lib/c2 kern_exit.s | ././inline  | as -o kern_exit.o && rm -f kern_exit.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_fork.c && /lib/c2 kern_fork.s | ././inline  | as -o kern_fork.o && rm -f kern_fork.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_mman.c && /lib/c2 kern_mman.s | ././inline  | as -o kern_mman.o && rm -f kern_mman.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_proc.c && /lib/c2 kern_proc.s | ././inline  | as -o kern_proc.o && rm -f kern_proc.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_prot.c && /lib/c2 kern_prot.s | ././inline  | as -o kern_prot.o && rm -f kern_prot.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_resource.c && /lib/c2 kern_resource.s | ././inline  | as -o kern_resource.o && rm -f kern_resource.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_sig.c && /lib/c2 kern_sig.s | ././inline  | as -o kern_sig.o && rm -f kern_sig.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_subr.c && /lib/c2 kern_subr.s | ././inline  | as -o kern_subr.o && rm -f kern_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_synch.c && /lib/c2 kern_synch.s | ././inline  | as -o kern_synch.o && rm -f kern_synch.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_time.c && /lib/c2 kern_time.s | ././inline  | as -o kern_time.o && rm -f kern_time.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_xxx.c && /lib/c2 kern_xxx.s | ././inline  | as -o kern_xxx.o && rm -f kern_xxx.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/mach_process.c && /lib/c2 mach_process.s | ././inline  | as -o mach_process.o && rm -f mach_process.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/mach_signal.c && /lib/c2 mach_signal.s | ././inline  | as -o mach_signal.o && rm -f mach_signal.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/quota_sys.c && /lib/c2 quota_sys.s | ././inline  | as -o quota_sys.o && rm -f quota_sys.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_log.c && /lib/c2 subr_log.s | ././inline  | as -o subr_log.o && rm -f subr_log.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_prf.c && /lib/c2 subr_prf.s | ././inline  | as -o subr_prf.o && rm -f subr_prf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_rmap.c && /lib/c2 subr_rmap.s | ././inline  | as -o subr_rmap.o && rm -f subr_rmap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_xxx.c && /lib/c2 subr_xxx.s | ././inline  | as -o subr_xxx.o && rm -f subr_xxx.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/sys_generic.c && /lib/c2 sys_generic.s | ././inline  | as -o sys_generic.o && rm -f sys_generic.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/sys_inode.c && /lib/c2 sys_inode.s | ././inline  | as -o sys_inode.o && rm -f sys_inode.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/sys_socket.c && /lib/c2 sys_socket.s | ././inline  | as -o sys_socket.o && rm -f sys_socket.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty.c && /lib/c2 tty.s | ././inline  | as -o tty.o && rm -f tty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty_cmupty.c && /lib/c2 tty_cmupty.s | ././inline  | as -o tty_cmupty.o && rm -f tty_cmupty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty_pty.c && /lib/c2 tty_pty.s | ././inline  | as -o tty_pty.o && rm -f tty_pty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty_tty.c && /lib/c2 tty_tty.s | ././inline  | as -o tty_tty.o && rm -f tty_tty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_alloc.c && /lib/c2 ufs_alloc.s | ././inline  | as -o ufs_alloc.o && rm -f ufs_alloc.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_bio.c && /lib/c2 ufs_bio.s | ././inline  | as -o ufs_bio.o && rm -f ufs_bio.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_bmap.c && /lib/c2 ufs_bmap.s | ././inline  | as -o ufs_bmap.o && rm -f ufs_bmap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_fio.c && /lib/c2 ufs_fio.s | ././inline  | as -o ufs_fio.o && rm -f ufs_fio.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_inode.c && /lib/c2 ufs_inode.s | ././inline  | as -o ufs_inode.o && rm -f ufs_inode.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_mount.c && /lib/c2 ufs_mount.s | ././inline  | as -o ufs_mount.o && rm -f ufs_mount.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_namei.c && /lib/c2 ufs_namei.s | ././inline  | as -o ufs_namei.o && rm -f ufs_namei.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_physio.c && /lib/c2 ufs_physio.s | ././inline  | as -o ufs_physio.o && rm -f ufs_physio.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_subr.c && /lib/c2 ufs_subr.s | ././inline  | as -o ufs_subr.o && rm -f ufs_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_syscalls.c && /lib/c2 ufs_syscalls.s | ././inline  | as -o ufs_syscalls.o && rm -f ufs_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_xxx.c && /lib/c2 ufs_xxx.s | ././inline  | as -o ufs_xxx.o && rm -f ufs_xxx.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_mbuf.c && /lib/c2 uipc_mbuf.s | ././inline  | as -o uipc_mbuf.o && rm -f uipc_mbuf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_socket.c && /lib/c2 uipc_socket.s | ././inline  | as -o uipc_socket.o && rm -f uipc_socket.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_socket2.c && /lib/c2 uipc_socket2.s | ././inline  | as -o uipc_socket2.o && rm -f uipc_socket2.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_syscalls.c && /lib/c2 uipc_syscalls.s | ././inline  | as -o uipc_syscalls.o && rm -f uipc_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_usrreq.c && /lib/c2 uipc_usrreq.s | ././inline  | as -o uipc_usrreq.o && rm -f uipc_usrreq.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/builtin/inode_pager.c && /lib/c2 inode_pager.s | ././inline  | as -o inode_pager.o && rm -f inode_pager.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/builtin/ux_exception.c && /lib/c2 ux_exception.s | ././inline  | as -o ux_exception.o && rm -f ux_exception.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/conf/param.c && /lib/c2 param.s | ././inline  | as -o param.o && rm -f param.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ast.c && /lib/c2 ast.s | ././inline  | as -o ast.o && rm -f ast.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/exception.c && /lib/c2 exception.s | ././inline  | as -o exception.o && rm -f exception.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_basics.c && /lib/c2 ipc_basics.s | ././inline  | as -o ipc_basics.o && rm -f ipc_basics.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_kset.c && /lib/c2 ipc_kset.s | ././inline  | as -o ipc_kset.o && rm -f ipc_kset.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_tt.c && /lib/c2 ipc_tt.s | ././inline  | as -o ipc_tt.o && rm -f ipc_tt.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_prims.c && /lib/c2 ipc_prims.s | ././inline  | as -o ipc_prims.o && rm -f ipc_prims.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mach_net.c && /lib/c2 mach_net.s | ././inline  | as -o mach_net.o && rm -f mach_net.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mach_timedev.c && /lib/c2 mach_timedev.s | ././inline  | as -o mach_timedev.o && rm -f mach_timedev.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mfs_prim.c && /lib/c2 mfs_prim.s | ././inline  | as -o mfs_prim.o && rm -f mfs_prim.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/slave.c && /lib/c2 slave.s | ././inline  | as -o slave.o && rm -f slave.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/syscall_subr.c && /lib/c2 syscall_subr.s | ././inline  | as -o syscall_subr.o && rm -f syscall_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/dli.c && /lib/c2 dli.s | ././inline  | as -o dli.o && rm -f dli.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/if.c && /lib/c2 if.s | ././inline  | as -o if.o && rm -f if.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/if_loop.c && /lib/c2 if_loop.s | ././inline  | as -o if_loop.o && rm -f if_loop.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/raw_cb.c && /lib/c2 raw_cb.s | ././inline  | as -o raw_cb.o && rm -f raw_cb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/raw_usrreq.c && /lib/c2 raw_usrreq.s | ././inline  | as -o raw_usrreq.o && rm -f raw_usrreq.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/route.c && /lib/c2 route.s | ././inline  | as -o route.o && rm -f route.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/if_ether.c && /lib/c2 if_ether.s | ././inline  | as -o if_ether.o && rm -f if_ether.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/in.c && /lib/c2 in.s | ././inline  | as -o in.o && rm -f in.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/in_pcb.c && /lib/c2 in_pcb.s | ././inline  | as -o in_pcb.o && rm -f in_pcb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/ip_input.c && /lib/c2 ip_input.s | ././inline  | as -o ip_input.o && rm -f ip_input.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/ip_output.c && /lib/c2 ip_output.s | ././inline  | as -o ip_output.o && rm -f ip_output.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/raw_ip.c && /lib/c2 raw_ip.s | ././inline  | as -o raw_ip.o && rm -f raw_ip.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/tcp_debug.c && /lib/c2 tcp_debug.s | ././inline  | as -o tcp_debug.o && rm -f tcp_debug.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/tcp_input.c && /lib/c2 tcp_input.s | ././inline  | as -o tcp_input.o && rm -f tcp_input.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/tcp_output.c && /lib/c2 tcp_output.s | ././inline  | as -o tcp_output.o && rm -f tcp_output.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/tcp_subr.c && /lib/c2 tcp_subr.s | ././inline  | as -o tcp_subr.o && rm -f tcp_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/tcp_timer.c && /lib/c2 tcp_timer.s | ././inline  | as -o tcp_timer.o && rm -f tcp_timer.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/tcp_usrreq.c && /lib/c2 tcp_usrreq.s | ././inline  | as -o tcp_usrreq.o && rm -f tcp_usrreq.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/udp_usrreq.c && /lib/c2 udp_usrreq.s | ././inline  | as -o udp_usrreq.o && rm -f udp_usrreq.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_control.c && /lib/c2 rfs_control.s | ././inline  | as -o rfs_control.o && rm -f rfs_control.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_descrip.c && /lib/c2 rfs_descrip.s | ././inline  | as -o rfs_descrip.o && rm -f rfs_descrip.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_init.c && /lib/c2 rfs_init.s | ././inline  | as -o rfs_init.o && rm -f rfs_init.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_kern.c && /lib/c2 rfs_kern.s | ././inline  | as -o rfs_kern.o && rm -f rfs_kern.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_socket.c && /lib/c2 rfs_socket.s | ././inline  | as -o rfs_socket.o && rm -f rfs_socket.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_subr.c && /lib/c2 rfs_subr.s | ././inline  | as -o rfs_subr.o && rm -f rfs_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_syscalls.c && /lib/c2 rfs_syscalls.s | ././inline  | as -o rfs_syscalls.o && rm -f rfs_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_unix.c && /lib/c2 vm_unix.s | ././inline  | as -o vm_unix.o && rm -f vm_unix.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ioconf.c && /lib/c2 ioconf.s | ././inline  | as -o ioconf.o && rm -f ioconf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/cons.c && /lib/c2 cons.s | ././inline  | as -o cons.o && rm -f cons.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/crl.c && /lib/c2 crl.s | ././inline  | as -o crl.o && rm -f crl.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/flp.c && /lib/c2 flp.s | ././inline  | as -o flp.o && rm -f flp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb.c && /lib/c2 kdb.s | ././inline  | as -o kdb.o && rm -f kdb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/access.c && /lib/c2 access.s | ././inline  | as -o access.o && rm -f access.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/command.c && /lib/c2 command.s | ././inline  | as -o command.o && rm -f command.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/expr.c && /lib/c2 expr.s | ././inline  | as -o expr.o && rm -f expr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/format.c && /lib/c2 format.s | ././inline  | as -o format.o && rm -f format.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/input.c && /lib/c2 input.s | ././inline  | as -o input.o && rm -f input.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/kdb_main.c && /lib/c2 kdb_main.s | ././inline  | as -o kdb_main.o && rm -f kdb_main.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/opset.c && /lib/c2 opset.s | ././inline  | as -o opset.o && rm -f opset.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/optab.c && /lib/c2 optab.s | ././inline  | as -o optab.o && rm -f optab.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/output.c && /lib/c2 output.s | ././inline  | as -o output.o && rm -f output.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/pcs.c && /lib/c2 pcs.s | ././inline  | as -o pcs.o && rm -f pcs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/print.c && /lib/c2 print.s | ././inline  | as -o print.o && rm -f print.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/runpcs.c && /lib/c2 runpcs.s | ././inline  | as -o runpcs.o && rm -f runpcs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/setup.c && /lib/c2 setup.s | ././inline  | as -o setup.o && rm -f setup.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/stack.c && /lib/c2 stack.s | ././inline  | as -o stack.o && rm -f stack.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/sym.c && /lib/c2 sym.s | ././inline  | as -o sym.o && rm -f sym.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/machdep.c && /lib/c2 machdep.s | ././inline  | as -o machdep.o && rm -f machdep.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/mem.c && /lib/c2 mem.s | ././inline  | as -o mem.o && rm -f mem.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/mscp.c && /lib/c2 mscp.s | ././inline  | as -o mscp.o && rm -f mscp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/pcb.c && /lib/c2 pcb.s | ././inline  | as -o pcb.o && rm -f pcb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/sys_machdep.c && /lib/c2 sys_machdep.s | ././inline  | as -o sys_machdep.o && rm -f sys_machdep.s;  ;  ;  
+cc -ES -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER ../../../src/kernel/vax/thread_bootstrap.s | as -o thread_bootstrap.o;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/trap.c && /lib/c2 trap.s | ././inline  | as -o trap.o && rm -f trap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/tu.c && /lib/c2 tu.s | ././inline  | as -o tu.o && rm -f tu.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/ufs_machdep.c && /lib/c2 ufs_machdep.s | ././inline  | as -o ufs_machdep.o && rm -f ufs_machdep.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/vm_machdep.c && /lib/c2 vm_machdep.s | ././inline  | as -o vm_machdep.o && rm -f vm_machdep.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_de.c && /lib/c2 -i if_de.s | ././inline  | as -o if_de.o  && rm -f if_de.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_il.c && /lib/c2 -i if_il.s | ././inline  | as -o if_il.o  && rm -f if_il.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_ni.c && /lib/c2 -i if_ni.s | ././inline  | as -o if_ni.o  && rm -f if_ni.s;  ;  ;  
+Assembler:
+"<stdin>", line 2845: WARNING: Caution: New Opcodes
+"<stdin>", line 2845: WARNING: These are not defined for all implementations of the VAX architecture.
+
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxmba/hp.c && /lib/c2 -i hp.s | ././inline  | as -o hp.o  && rm -f hp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxmba/mba.c && /lib/c2 -i mba.s | ././inline  | as -o mba.o  && rm -f mba.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dmf.c && /lib/c2 -i dmf.s | ././inline  | as -o dmf.o  && rm -f dmf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dz.c && /lib/c2 -i dz.s | ././inline  | as -o dz.o  && rm -f dz.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/rk.c && /lib/c2 -i rk.s | ././inline  | as -o rk.o  && rm -f rk.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/uba.c && /lib/c2 -i uba.s | ././inline  | as -o uba.o  && rm -f uba.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/uda.c && /lib/c2 -i uda.s | ././inline  | as -o uda.o  && rm -f uda.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/ut.c && /lib/c2 -i ut.s | ././inline  | as -o ut.o  && rm -f ut.s;  ;  ;  
+loading vmunix.sys
+rearranging symbols
+text	data	bss	dec	hex
+444744	90760	138132	673636	a4764
+(null command)
+ln vmunix.sys vmunix; ln vmunix vmunix.CMU-Release2.5b.STD+MP+16-afs-nfs
+(null command)
+(null command)
+(null command)
+/usr/mach/bin/md -f -d `ls *.d`
+
+****************** STD+WS-afs-nfs *******************
+[ generating ./bin/config ]
+`../../bin/config' is up to date.
+[ configuring in STD+WS-afs-nfs ]
+../bin/config -c ../conf  STD+WS-afs-nfs
+[ making STD+WS-afs-nfs ]
+cat assym.s  ../../../src/kernel/vax/rpb.s  ../../../src/kernel/vax/scb.s  ../../../src/kernel/vaxnb/biscb.s  ubvec.s  ../../../src/kernel/vax/locore.s  ../../../src/kernel/vaxnb/biglue.s  ubglue.s  >locore.tmp
+mv locore.tmp locore.c
+cc -E -DLOCORE -I../../../src/kernel/machine -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER locore.c >locore.i
+as -o locore.o ../../../src/kernel/vax/pcb.m locore.i
+rm locore.i
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_physio.c && /lib/c2 ufs_physio.s | ././inline  | as -o ufs_physio.o && rm -f ufs_physio.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/if_ether.c && /lib/c2 if_ether.s | ././inline  | as -o if_ether.o && rm -f if_ether.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ioconf.c && /lib/c2 ioconf.s | ././inline  | as -o ioconf.o && rm -f ioconf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/autoconf.c && /lib/c2 -i autoconf.s | ././inline  | as -o autoconf.o  && rm -f autoconf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/conf.c && /lib/c2 conf.s | ././inline  | as -o conf.o && rm -f conf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/mscp.c && /lib/c2 mscp.s | ././inline  | as -o mscp.o && rm -f mscp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_qe.c && /lib/c2 -i if_qe.s | ././inline  | as -o if_qe.o  && rm -f if_qe.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dhu.c && /lib/c2 -i dhu.s | ././inline  | as -o dhu.o  && rm -f dhu.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/qd.c && /lib/c2 -i qd.s | ././inline  | as -o qd.o  && rm -f qd.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/qv.c && /lib/c2 -i qv.s | ././inline  | as -o qv.o  && rm -f qv.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/qvfont.c && /lib/c2 -i qvfont.s | ././inline  | as -o qvfont.o  && rm -f qvfont.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/tmscp.c && /lib/c2 -i tmscp.s | ././inline  | as -o tmscp.o  && rm -f tmscp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/ts.c && /lib/c2 -i ts.s | ././inline  | as -o ts.o  && rm -f ts.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/uda.c && /lib/c2 -i uda.s | ././inline  | as -o uda.o  && rm -f uda.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/machine/swapgeneric.c && /lib/c2 swapgeneric.s | ././inline  | as -o swapgeneric.o && rm -f swapgeneric.s
+(null command)
+(null command)
+(null command)
+loading vmunix.sys
+rearranging symbols
+text	data	bss	dec	hex
+404576	75228	123200	603004	9337c
+(null command)
+ln vmunix.sys vmunix; ln vmunix vmunix.CMU-Release2.5b.STD+WS-afs-nfs
+(null command)
+(null command)
+(null command)
+/usr/mach/bin/md -f -d `ls *.d`
+
+****************** STD+ANY-afs-nfs *******************
+[ linking STD+ANY-afs-nfs to STD+WS-afs-nfs ]
+[ generating STD+ANY-afs-nfs/STD+ANY-afs-nfs from conf/MASTER{,.vax}{,.local} ]
+[ generating ./bin/config ]
+`../../bin/config' is up to date.
+[ configuring in STD+ANY-afs-nfs ]
+../bin/config -c ../conf  STD+ANY-afs-nfs
+[ making STD+ANY-afs-nfs ]
+cc -c -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL "-Dvolatile="  ../../../src/kernel/machine/genassym.c
+cc genassym.o
+./a.out > assym.s; rm -f a.out
+cat assym.s  ../../../src/kernel/vax/rpb.s  ../../../src/kernel/vax/scb.s  ../../../src/kernel/vaxnb/biscb.s  ubvec.s  ../../../src/kernel/vax/locore.s  ../../../src/kernel/vaxnb/biglue.s  ubglue.s  >locore.tmp
+mv locore.tmp locore.c
+cc -E -DLOCORE -I../../../src/kernel/machine -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER locore.c >locore.i
+as -o locore.o ../../../src/kernel/vax/pcb.m locore.i
+rm locore.i
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/cmu_syscalls.c && /lib/c2 cmu_syscalls.s | ././inline  | as -o cmu_syscalls.o && rm -f cmu_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/init_main.c && /lib/c2 init_main.s | ././inline  | as -o init_main.o && rm -f init_main.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/init_sysent.c && /lib/c2 init_sysent.s | ././inline  | as -o init_sysent.o && rm -f init_sysent.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_acct.c && /lib/c2 kern_acct.s | ././inline  | as -o kern_acct.o && rm -f kern_acct.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_clock.c && /lib/c2 kern_clock.s | ././inline  | as -o kern_clock.o && rm -f kern_clock.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_descrip.c && /lib/c2 kern_descrip.s | ././inline  | as -o kern_descrip.o && rm -f kern_descrip.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_exec.c && /lib/c2 kern_exec.s | ././inline  | as -o kern_exec.o && rm -f kern_exec.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_exit.c && /lib/c2 kern_exit.s | ././inline  | as -o kern_exit.o && rm -f kern_exit.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_fork.c && /lib/c2 kern_fork.s | ././inline  | as -o kern_fork.o && rm -f kern_fork.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_mman.c && /lib/c2 kern_mman.s | ././inline  | as -o kern_mman.o && rm -f kern_mman.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_proc.c && /lib/c2 kern_proc.s | ././inline  | as -o kern_proc.o && rm -f kern_proc.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_prot.c && /lib/c2 kern_prot.s | ././inline  | as -o kern_prot.o && rm -f kern_prot.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_resource.c && /lib/c2 kern_resource.s | ././inline  | as -o kern_resource.o && rm -f kern_resource.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_sig.c && /lib/c2 kern_sig.s | ././inline  | as -o kern_sig.o && rm -f kern_sig.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_subr.c && /lib/c2 kern_subr.s | ././inline  | as -o kern_subr.o && rm -f kern_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_synch.c && /lib/c2 kern_synch.s | ././inline  | as -o kern_synch.o && rm -f kern_synch.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_time.c && /lib/c2 kern_time.s | ././inline  | as -o kern_time.o && rm -f kern_time.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/kern_xxx.c && /lib/c2 kern_xxx.s | ././inline  | as -o kern_xxx.o && rm -f kern_xxx.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/mach_process.c && /lib/c2 mach_process.s | ././inline  | as -o mach_process.o && rm -f mach_process.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/mach_signal.c && /lib/c2 mach_signal.s | ././inline  | as -o mach_signal.o && rm -f mach_signal.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/quota_sys.c && /lib/c2 quota_sys.s | ././inline  | as -o quota_sys.o && rm -f quota_sys.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_log.c && /lib/c2 subr_log.s | ././inline  | as -o subr_log.o && rm -f subr_log.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_prf.c && /lib/c2 subr_prf.s | ././inline  | as -o subr_prf.o && rm -f subr_prf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_rmap.c && /lib/c2 subr_rmap.s | ././inline  | as -o subr_rmap.o && rm -f subr_rmap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/subr_xxx.c && /lib/c2 subr_xxx.s | ././inline  | as -o subr_xxx.o && rm -f subr_xxx.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/sys_generic.c && /lib/c2 sys_generic.s | ././inline  | as -o sys_generic.o && rm -f sys_generic.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/sys_inode.c && /lib/c2 sys_inode.s | ././inline  | as -o sys_inode.o && rm -f sys_inode.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/sys_socket.c && /lib/c2 sys_socket.s | ././inline  | as -o sys_socket.o && rm -f sys_socket.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty.c && /lib/c2 tty.s | ././inline  | as -o tty.o && rm -f tty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty_cmupty.c && /lib/c2 tty_cmupty.s | ././inline  | as -o tty_cmupty.o && rm -f tty_cmupty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty_pty.c && /lib/c2 tty_pty.s | ././inline  | as -o tty_pty.o && rm -f tty_pty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/tty_tty.c && /lib/c2 tty_tty.s | ././inline  | as -o tty_tty.o && rm -f tty_tty.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_alloc.c && /lib/c2 ufs_alloc.s | ././inline  | as -o ufs_alloc.o && rm -f ufs_alloc.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_bio.c && /lib/c2 ufs_bio.s | ././inline  | as -o ufs_bio.o && rm -f ufs_bio.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_bmap.c && /lib/c2 ufs_bmap.s | ././inline  | as -o ufs_bmap.o && rm -f ufs_bmap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_fio.c && /lib/c2 ufs_fio.s | ././inline  | as -o ufs_fio.o && rm -f ufs_fio.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_inode.c && /lib/c2 ufs_inode.s | ././inline  | as -o ufs_inode.o && rm -f ufs_inode.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_mount.c && /lib/c2 ufs_mount.s | ././inline  | as -o ufs_mount.o && rm -f ufs_mount.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_namei.c && /lib/c2 ufs_namei.s | ././inline  | as -o ufs_namei.o && rm -f ufs_namei.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_physio.c && /lib/c2 ufs_physio.s | ././inline  | as -o ufs_physio.o && rm -f ufs_physio.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_subr.c && /lib/c2 ufs_subr.s | ././inline  | as -o ufs_subr.o && rm -f ufs_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_syscalls.c && /lib/c2 ufs_syscalls.s | ././inline  | as -o ufs_syscalls.o && rm -f ufs_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/ufs_xxx.c && /lib/c2 ufs_xxx.s | ././inline  | as -o ufs_xxx.o && rm -f ufs_xxx.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_mbuf.c && /lib/c2 uipc_mbuf.s | ././inline  | as -o uipc_mbuf.o && rm -f uipc_mbuf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_socket.c && /lib/c2 uipc_socket.s | ././inline  | as -o uipc_socket.o && rm -f uipc_socket.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_socket2.c && /lib/c2 uipc_socket2.s | ././inline  | as -o uipc_socket2.o && rm -f uipc_socket2.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_syscalls.c && /lib/c2 uipc_syscalls.s | ././inline  | as -o uipc_syscalls.o && rm -f uipc_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/bsd/uipc_usrreq.c && /lib/c2 uipc_usrreq.s | ././inline  | as -o uipc_usrreq.o && rm -f uipc_usrreq.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/builtin/device_pager.c && /lib/c2 device_pager.s | ././inline  | as -o device_pager.o && rm -f device_pager.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/builtin/inode_pager.c && /lib/c2 inode_pager.s | ././inline  | as -o inode_pager.o && rm -f inode_pager.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/builtin/ux_exception.c && /lib/c2 ux_exception.s | ././inline  | as -o ux_exception.o && rm -f ux_exception.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/conf/param.c && /lib/c2 param.s | ././inline  | as -o param.o && rm -f param.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ast.c && /lib/c2 ast.s | ././inline  | as -o ast.o && rm -f ast.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/clock_prim.c && /lib/c2 clock_prim.s | ././inline  | as -o clock_prim.o && rm -f clock_prim.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/exception.c && /lib/c2 exception.s | ././inline  | as -o exception.o && rm -f exception.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/lock.c && /lib/c2 lock.s | ././inline  | as -o lock.o && rm -f lock.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_basics.c && /lib/c2 ipc_basics.s | ././inline  | as -o ipc_basics.o && rm -f ipc_basics.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_copyin.c && /lib/c2 ipc_copyin.s | ././inline  | as -o ipc_copyin.o && rm -f ipc_copyin.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_copyout.c && /lib/c2 ipc_copyout.s | ././inline  | as -o ipc_copyout.o && rm -f ipc_copyout.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_kport.c && /lib/c2 ipc_kport.s | ././inline  | as -o ipc_kport.o && rm -f ipc_kport.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_kset.c && /lib/c2 ipc_kset.s | ././inline  | as -o ipc_kset.o && rm -f ipc_kset.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_pobj.c && /lib/c2 ipc_pobj.s | ././inline  | as -o ipc_pobj.o && rm -f ipc_pobj.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_port.c && /lib/c2 ipc_port.s | ././inline  | as -o ipc_port.o && rm -f ipc_port.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_tt.c && /lib/c2 ipc_tt.s | ././inline  | as -o ipc_tt.o && rm -f ipc_tt.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_prims.c && /lib/c2 ipc_prims.s | ././inline  | as -o ipc_prims.o && rm -f ipc_prims.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/ipc_ptraps.c && /lib/c2 ipc_ptraps.s | ././inline  | as -o ipc_ptraps.o && rm -f ipc_ptraps.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mach_net.c && /lib/c2 mach_net.s | ././inline  | as -o mach_net.o && rm -f mach_net.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mfs_prim.c && /lib/c2 mfs_prim.s | ././inline  | as -o mfs_prim.o && rm -f mfs_prim.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/mig_support.c && /lib/c2 mig_support.s | ././inline  | as -o mig_support.o && rm -f mig_support.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/sched_prim.c && /lib/c2 sched_prim.s | ././inline  | as -o sched_prim.o && rm -f sched_prim.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/slave.c && /lib/c2 slave.s | ././inline  | as -o slave.o && rm -f slave.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/syscall_emulation.c && /lib/c2 syscall_emulation.s | ././inline  | as -o syscall_emulation.o && rm -f syscall_emulation.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/syscall_subr.c && /lib/c2 syscall_subr.s | ././inline  | as -o syscall_subr.o && rm -f syscall_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/syscall_sw.c && /lib/c2 syscall_sw.s | ././inline  | as -o syscall_sw.o && rm -f syscall_sw.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/task.c && /lib/c2 task.s | ././inline  | as -o task.o && rm -f task.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/thread.c && /lib/c2 thread.s | ././inline  | as -o thread.o && rm -f thread.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/thread_swap.c && /lib/c2 thread_swap.s | ././inline  | as -o thread_swap.o && rm -f thread_swap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/timer.c && /lib/c2 timer.s | ././inline  | as -o timer.o && rm -f timer.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/kern/xpr.c && /lib/c2 xpr.s | ././inline  | as -o xpr.o && rm -f xpr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL mach/exc_user.c && /lib/c2 exc_user.s | ././inline  | as -o exc_user.o && rm -f exc_user.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL mach/mach_server.c && /lib/c2 mach_server.s | ././inline  | as -o mach_server.o && rm -f mach_server.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL mach/memory_object_default_user.c && /lib/c2 memory_object_default_user.s | ././inline  | as -o memory_object_default_user.o && rm -f memory_object_default_user.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL mach/memory_object_user.c && /lib/c2 memory_object_user.s | ././inline  | as -o memory_object_user.o && rm -f memory_object_user.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL mach_debug/mach_debug_server.c && /lib/c2 mach_debug_server.s | ././inline  | as -o mach_debug_server.o && rm -f mach_debug_server.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/if.c && /lib/c2 if.s | ././inline  | as -o if.o && rm -f if.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/if_loop.c && /lib/c2 if_loop.s | ././inline  | as -o if_loop.o && rm -f if_loop.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/netisr.c && /lib/c2 netisr.s | ././inline  | as -o netisr.o && rm -f netisr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/net/route.c && /lib/c2 route.s | ././inline  | as -o route.o && rm -f route.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/if_ether.c && /lib/c2 if_ether.s | ././inline  | as -o if_ether.o && rm -f if_ether.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/in.c && /lib/c2 in.s | ././inline  | as -o in.o && rm -f in.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/in_pcb.c && /lib/c2 in_pcb.s | ././inline  | as -o in_pcb.o && rm -f in_pcb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/ip_output.c && /lib/c2 ip_output.s | ././inline  | as -o ip_output.o && rm -f ip_output.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/netinet/udp_usrreq.c && /lib/c2 udp_usrreq.s | ././inline  | as -o udp_usrreq.o && rm -f udp_usrreq.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_control.c && /lib/c2 rfs_control.s | ././inline  | as -o rfs_control.o && rm -f rfs_control.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_descrip.c && /lib/c2 rfs_descrip.s | ././inline  | as -o rfs_descrip.o && rm -f rfs_descrip.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_init.c && /lib/c2 rfs_init.s | ././inline  | as -o rfs_init.o && rm -f rfs_init.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_kern.c && /lib/c2 rfs_kern.s | ././inline  | as -o rfs_kern.o && rm -f rfs_kern.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_socket.c && /lib/c2 rfs_socket.s | ././inline  | as -o rfs_socket.o && rm -f rfs_socket.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_subr.c && /lib/c2 rfs_subr.s | ././inline  | as -o rfs_subr.o && rm -f rfs_subr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/rfs/rfs_syscalls.c && /lib/c2 rfs_syscalls.s | ././inline  | as -o rfs_syscalls.o && rm -f rfs_syscalls.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/memory_object.c && /lib/c2 memory_object.s | ././inline  | as -o memory_object.o && rm -f memory_object.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_fault.c && /lib/c2 vm_fault.s | ././inline  | as -o vm_fault.o && rm -f vm_fault.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_init.c && /lib/c2 vm_init.s | ././inline  | as -o vm_init.o && rm -f vm_init.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_kern.c && /lib/c2 vm_kern.s | ././inline  | as -o vm_kern.o && rm -f vm_kern.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_map.c && /lib/c2 vm_map.s | ././inline  | as -o vm_map.o && rm -f vm_map.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_object.c && /lib/c2 vm_object.s | ././inline  | as -o vm_object.o && rm -f vm_object.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_pageout.c && /lib/c2 vm_pageout.s | ././inline  | as -o vm_pageout.o && rm -f vm_pageout.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_resident.c && /lib/c2 vm_resident.s | ././inline  | as -o vm_resident.o && rm -f vm_resident.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_unix.c && /lib/c2 vm_unix.s | ././inline  | as -o vm_unix.o && rm -f vm_unix.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vm/vm_user.c && /lib/c2 vm_user.s | ././inline  | as -o vm_user.o && rm -f vm_user.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ioconf.c && /lib/c2 ioconf.s | ././inline  | as -o ioconf.o && rm -f ioconf.s;  ;  ;  
+cc -ES -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER ../../../src/kernel/emul/vaxexception.s | as -o vaxexception.o;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/autoconf.c && /lib/c2 -i autoconf.s | ././inline  | as -o autoconf.o  && rm -f autoconf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/bi.c && /lib/c2 -i bi.s | ././inline  | as -o bi.o  && rm -f bi.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/clock.c && /lib/c2 clock.s | ././inline  | as -o clock.o && rm -f clock.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/conf.c && /lib/c2 conf.s | ././inline  | as -o conf.o && rm -f conf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/cons.c && /lib/c2 cons.s | ././inline  | as -o cons.o && rm -f cons.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/cpudata.c && /lib/c2 cpudata.s | ././inline  | as -o cpudata.o && rm -f cpudata.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/crl.c && /lib/c2 crl.s | ././inline  | as -o crl.o && rm -f crl.s;  ;  ;  
+cc -ES -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER ../../../src/kernel/vax/dfloat.s | as -o dfloat.o;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/flp.c && /lib/c2 flp.s | ././inline  | as -o flp.o && rm -f flp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/ka630.c && /lib/c2 ka630.s | ././inline  | as -o ka630.o && rm -f ka630.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/ka650.c && /lib/c2 ka650.s | ././inline  | as -o ka650.o && rm -f ka650.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb.c && /lib/c2 kdb.s | ././inline  | as -o kdb.o && rm -f kdb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/access.c && /lib/c2 access.s | ././inline  | as -o access.o && rm -f access.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/command.c && /lib/c2 command.s | ././inline  | as -o command.o && rm -f command.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/expr.c && /lib/c2 expr.s | ././inline  | as -o expr.o && rm -f expr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/format.c && /lib/c2 format.s | ././inline  | as -o format.o && rm -f format.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/input.c && /lib/c2 input.s | ././inline  | as -o input.o && rm -f input.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/kdb_main.c && /lib/c2 kdb_main.s | ././inline  | as -o kdb_main.o && rm -f kdb_main.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/opset.c && /lib/c2 opset.s | ././inline  | as -o opset.o && rm -f opset.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/optab.c && /lib/c2 optab.s | ././inline  | as -o optab.o && rm -f optab.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/output.c && /lib/c2 output.s | ././inline  | as -o output.o && rm -f output.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/pcs.c && /lib/c2 pcs.s | ././inline  | as -o pcs.o && rm -f pcs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/print.c && /lib/c2 print.s | ././inline  | as -o print.o && rm -f print.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/runpcs.c && /lib/c2 runpcs.s | ././inline  | as -o runpcs.o && rm -f runpcs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/setup.c && /lib/c2 setup.s | ././inline  | as -o setup.o && rm -f setup.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/stack.c && /lib/c2 stack.s | ././inline  | as -o stack.o && rm -f stack.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/kdb/sym.c && /lib/c2 sym.s | ././inline  | as -o sym.o && rm -f sym.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/ma780.c && /lib/c2 ma780.s | ././inline  | as -o ma780.o && rm -f ma780.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/ma780subrs.c && /lib/c2 ma780subrs.s | ././inline  | as -o ma780subrs.o && rm -f ma780subrs.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/machdep.c && /lib/c2 machdep.s | ././inline  | as -o machdep.o && rm -f machdep.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/mem.c && /lib/c2 mem.s | ././inline  | as -o mem.o && rm -f mem.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/mscp.c && /lib/c2 mscp.s | ././inline  | as -o mscp.o && rm -f mscp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/pcb.c && /lib/c2 pcb.s | ././inline  | as -o pcb.o && rm -f pcb.s;  ;  ;  
+cc -ES -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER ../../../src/kernel/vax/phys.s | as -o phys.o;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/pmap.c && /lib/c2 pmap.s | ././inline  | as -o pmap.o && rm -f pmap.s;  ;  ;  
+cc -ES -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER ../../../src/kernel/vax/rxcd.s | as -o rxcd.o;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/sys_machdep.c && /lib/c2 sys_machdep.s | ././inline  | as -o sys_machdep.o && rm -f sys_machdep.s;  ;  ;  
+cc -ES -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL -DASSEMBLER ../../../src/kernel/vax/thread_bootstrap.s | as -o thread_bootstrap.o;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/trap.c && /lib/c2 trap.s | ././inline  | as -o trap.o && rm -f trap.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/tu.c && /lib/c2 tu.s | ././inline  | as -o tu.o && rm -f tu.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/ufs_machdep.c && /lib/c2 ufs_machdep.s | ././inline  | as -o ufs_machdep.o && rm -f ufs_machdep.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/vax_init.c && /lib/c2 vax_init.s | ././inline  | as -o vax_init.o && rm -f vax_init.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vax/vm_machdep.c && /lib/c2 vm_machdep.s | ././inline  | as -o vm_machdep.o && rm -f vm_machdep.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/enet.c && /lib/c2 enet.s | ././inline  | as -o enet.o && rm -f enet.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_de.c && /lib/c2 -i if_de.s | ././inline  | as -o if_de.o  && rm -f if_de.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_en.c && /lib/c2 -i if_en.s | ././inline  | as -o if_en.o  && rm -f if_en.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_il.c && /lib/c2 -i if_il.s | ././inline  | as -o if_il.o  && rm -f if_il.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_ni.c && /lib/c2 -i if_ni.s | ././inline  | as -o if_ni.o  && rm -f if_ni.s;  ;  ;  
+Assembler:
+"<stdin>", line 2842: WARNING: Caution: New Opcodes
+"<stdin>", line 2842: WARNING: These are not defined for all implementations of the VAX architecture.
+
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_qe.c && /lib/c2 -i if_qe.s | ././inline  | as -o if_qe.o  && rm -f if_qe.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxif/if_uba.c && /lib/c2 -i if_uba.s | ././inline  | as -o if_uba.o  && rm -f if_uba.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxnb/biconf.c && /lib/c2 -i biconf.s | ././inline  | as -o biconf.o  && rm -f biconf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxnb/cca.c && /lib/c2 cca.s | ././inline  | as -o cca.o && rm -f cca.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxnb/ka62a.c && /lib/c2 ka62a.s | ././inline  | as -o ka62a.o && rm -f ka62a.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxnb/ka820.c && /lib/c2 ka820.s | ././inline  | as -o ka820.o && rm -f ka820.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxnb/ka88.c && /lib/c2 ka88.s | ././inline  | as -o ka88.o && rm -f ka88.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxnb/vaxmp.c && /lib/c2 vaxmp.s | ././inline  | as -o vaxmp.o && rm -f vaxmp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxmba/hp.c && /lib/c2 -i hp.s | ././inline  | as -o hp.o  && rm -f hp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxmba/ht.c && /lib/c2 -i ht.s | ././inline  | as -o ht.o  && rm -f ht.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxmba/mba.c && /lib/c2 -i mba.s | ././inline  | as -o mba.o  && rm -f mba.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dhu.c && /lib/c2 -i dhu.s | ././inline  | as -o dhu.o  && rm -f dhu.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dmf.c && /lib/c2 -i dmf.s | ././inline  | as -o dmf.o  && rm -f dmf.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dmz.c && /lib/c2 -i dmz.s | ././inline  | as -o dmz.o  && rm -f dmz.s;  ;  ;  
+../../../src/kernel/vaxuba/dmz.c: 121: TRUE redefined
+../../../src/kernel/vaxuba/dmz.c: 122: FALSE redefined
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dr.c && /lib/c2 -i dr.s | ././inline  | as -o dr.o  && rm -f dr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/drb.c && /lib/c2 -i drb.s | ././inline  | as -o drb.o  && rm -f drb.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/ds.c && /lib/c2 -i ds.s | ././inline  | as -o ds.o  && rm -f ds.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/dz.c && /lib/c2 -i dz.s | ././inline  | as -o dz.o  && rm -f dz.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/fps.c && /lib/c2 -i fps.s | ././inline  | as -o fps.o  && rm -f fps.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/gmr.c && /lib/c2 -i gmr.s | ././inline  | as -o gmr.o  && rm -f gmr.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/ip.c && /lib/c2 -i ip.s | ././inline  | as -o ip.o  && rm -f ip.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/qd.c && /lib/c2 -i qd.s | ././inline  | as -o qd.o  && rm -f qd.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/qv.c && /lib/c2 -i qv.s | ././inline  | as -o qv.o  && rm -f qv.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/rk.c && /lib/c2 -i rk.s | ././inline  | as -o rk.o  && rm -f rk.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/tmscp.c && /lib/c2 -i tmscp.s | ././inline  | as -o tmscp.o  && rm -f tmscp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/ts.c && /lib/c2 -i ts.s | ././inline  | as -o ts.o  && rm -f ts.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/uba.c && /lib/c2 -i uba.s | ././inline  | as -o uba.o  && rm -f uba.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/uda.c && /lib/c2 -i uda.s | ././inline  | as -o uda.o  && rm -f uda.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/ut.c && /lib/c2 -i ut.s | ././inline  | as -o ut.o  && rm -f ut.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/vaxuba/vp.c && /lib/c2 -i vp.s | ././inline  | as -o vp.o  && rm -f vp.s;  ;  ;  
+cc -c -S -MD  -DCMU -DINET -DMACH -DCMUCS -DKERNEL ../../../src/kernel/machine/swapgeneric.c && /lib/c2 swapgeneric.s | ././inline  | as -o swapgeneric.o && rm -f swapgeneric.s
+(null command)
+(null command)
+(null command)
+loading vmunix.sys
+rearranging symbols
+text	data	bss	dec	hex
+497044	102228	161468	760740	b9ba4
+(null command)
+ln vmunix.sys vmunix; ln vmunix vmunix.CMU-Release2.5b.STD+ANY-afs-nfs
+(null command)
+(null command)
+(null command)
+/usr/mach/bin/md -f -d `ls *.d`

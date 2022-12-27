@@ -1,0 +1,5 @@
+FILES
+csw.s
+cthread_inline.awk
+lock.s
+thread.c

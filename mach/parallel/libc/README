@@ -1,0 +1,15 @@
+This directory contains the CMU Computer Science department version
+of the C runtime library.  Exportable and non-exportable additions
+are contained within the libcs and cs subdirectories, respectively.
+
+The following changes have been made to existing routines:
+
+	gen/ctime.c		Bug fix for pre-epoch dates
+	gen/errlst.c		EBUSY message changed
+	gen/getwd.c		Code for RFS super-root
+	gen/ttyname.c		CMU terminal name optimization
+	net/rcmd.c		Additional ruserok restrictions
+	net/res_comp.c		Changed getshort, getlong, putshort and
+	net/res_debug.c			putlong to res_getshort, res_getlong,
+	net/res_mkquery.c		res_putshort and res_putlong to avoid
+	net/named/gethostnamadr.c	conflicts with libcs/get{short,long}.

@@ -1,0 +1,15 @@
+tty21	9	n	3000	wb1	cmu-cs-wb1 WB1 CMU-CS-WB1 1 
+tty05	9	wb1	3003	wb2	cmu-cs-wb2 WB2 CMU-CS-WB2 2 tty05
+tty06	9	wb1	3004	wb3	cmu-cs-wb3 WB3 CMU-CS-WB3 3 tty06
+tty07	9	wb1	3005	wb4	cmu-cs-wb4 WB4 CMU-CS-WB4 4 tty07
+tty08	9	wb1	3002	r2d2	cmu-cs-8200 8200 cmu-cs-r2d2 r2d2 CMU-CS-R2D2 8 tty08
+tty09	9	wb1	3006	8220	cmu-cs-8220 8220 tty09
+tty0a	9	wb1	3007	x29	cmu-cs-x29 x29 CMU-CS-X29 X29 29 tty0a
+tty0b	9	wb1	3001	sp	cmu-cs-speech2 sp CMU-CS-SPEECH2 tty0b
+tty0e	13	wb1	3008	spm	cmu-cs-spm spm	CMU-CS-SPM tty0e
+tty0f	13	wb1	3009	spm9	cmu-cs-spm9 spm9 CMU-CS-SPM9 tty0f
+tty0c	13	wb1	3010	sps	cmu-cs-sps sps CMU-CS-SPS tty0c
+tty19	9	spice	3012	boris	boris.mach.cs.cmu.edu
+tty20	9	spice	3013	natasha	natasha.mach.cs.cmu.edu
+tty18	12	spice	3011	ius3	ius3.cs.cmu.edu
+ttyb    9	o	3014	nova	nova

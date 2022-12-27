@@ -1,0 +1,17 @@
+etherxdr.o: etherxdr.c
+etherxdr.o: /MACH_DIST/usr/cs/include/stdio.h
+etherxdr.o: ../../include/rpc/rpc.h
+etherxdr.o: ../../include/rpc/types.h
+etherxdr.o: /MACH_DIST/usr/mach/include/sys/types.h
+etherxdr.o: /MACH_DIST/usr/mach/include/mach/machine/vm_types.h
+etherxdr.o: /MACH_DIST/usr/mach/include/netinet/in.h
+etherxdr.o: ../../include/rpc/xdr.h
+etherxdr.o: ../../include/rpc/auth.h
+etherxdr.o: ../../include/rpc/clnt.h
+etherxdr.o: ../../include/rpc/rpc_msg.h
+etherxdr.o: ../../include/rpc/auth_unix.h
+etherxdr.o: ../../include/rpc/svc.h
+etherxdr.o: ../../include/rpc/svc_auth.h
+etherxdr.o: /MACH_DIST/usr/mach/include/sys/time.h
+etherxdr.o: /MACH_DIST/usr/cs/include/time.h
+etherxdr.o: ../../include/rpcsvc/ether.h

@@ -1,0 +1,8 @@
+Apr 13, 1990
+  Added new set of /usr/mach/man/man2 man pages. Most noticible change
+was the rewriting of the memory_control and memory_object sections as
+as separate section for each primitive.
+
+  Added more sources, so that all the source files necessary to make
+the CMU build environment are available. The following directories were added
+	bin/awk, bin/sed, usr/bin/yacc, usr/bin/lex, usr/cs/bin/find

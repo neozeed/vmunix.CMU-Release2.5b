@@ -1,0 +1,20 @@
+## @SOURCEWARNING@
+#
+# Authorized program list
+#
+######################################################################
+# HISTORY
+# $Log:	authcover.list,v $
+# Revision 2.2  89/01/28  23:07:12  gm0w
+# 	Created.
+# 	[89/01/28            gm0w]
+# 
+######################################################################
+make		/usr/cs/bin/make
+makepath	/usr/cs/etc/makepath
+mkdir		/bin/mkdir
+rcs		/usr/misc/.rcs/bin/rcs
+rcsci		/usr/misc/.rcs/bin/rcsci
+rcsco		/usr/misc/.rcs/bin/rcsco
+release		/usr/misc/.sdm/bin/release
+rmdir		/bin/rmdir

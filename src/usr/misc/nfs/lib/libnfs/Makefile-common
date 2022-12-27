@@ -1,0 +1,39 @@
+# @(#)Makefile	1.4 86/10/28 NFSSRC
+#
+# 	Makefile	1.1	86/09/24
+#
+######################################################################
+# HISTORY
+# 25-May-89  Paul Parker (parker) at Carnegie-Mellon University
+#	Created for new and improved SSP and to make libnfs.a.
+#
+# $Log:	Makefile-common,v $
+# Revision 2.0  89/06/15  16:37:25  dimitris
+#   Organized into a misc collection and SSPized
+# 
+# 
+######################################################################
+
+IDIR			= /usr/misc/.nfs/lib/
+
+GENOBJS			= mntent.o
+NETOBJS			= innetgr.o getrpcent.o
+YPOBJS			= yp_match.o yp_bind.o ypprot_err.o ypxdr.o ypv1_xdr.o\
+			  yp_enum.o
+OFILES			= ${GENOBJS} ${NETOBJS} ${YPOBJS} ${${MACHINE}OBJS}
+
+CPP			= `wh -Lq cpp`
+CPPFLAGS		= -I${MACHINE}
+
+LIBRARIES		= libnfs.a
+
+CFLAGS			= -I../../include \
+			  -Dgenericway \
+			  ${${MACHINE}CFLAGS}
+
+IMODE			= 644
+
+
+include ../../../../../Makefile-common
+
+RANLIB  =       cp $@ .. ; ranlib ../$@

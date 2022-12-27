@@ -1,0 +1,10 @@
+FILES
+Makefile
+assert.c
+error.c
+ipcx.defs
+ipcx_types.h
+main.c
+patch.c
+printmsg.c
+procs.c

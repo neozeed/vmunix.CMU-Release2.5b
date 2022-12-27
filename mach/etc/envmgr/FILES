@@ -1,0 +1,6 @@
+FILES
+Makefile
+emdefs.h
+env_mgr.defs
+envmgrmain.c
+envprocs.c

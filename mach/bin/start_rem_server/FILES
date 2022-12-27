@@ -1,0 +1,6 @@
+FILES
+Makefile
+RCS
+start_rem_server.c
+startproc.c
+uid.c

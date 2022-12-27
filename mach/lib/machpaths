@@ -1,0 +1,43 @@
+# 
+# Mach Operating System
+# Copyright (c) 1989 Carnegie-Mellon University
+# All rights reserved.  The CMU software License Agreement specifies
+# the terms and conditions for use and redistribution.
+#
+
+#	Setup paths for MACH users.
+#
+# HISTORY
+# $Log:	machpaths,v $
+# Revision 1.2  89/06/08  18:22:35  mrt
+# 	Updated for Mach 2.5
+# 	[89/06/08            mrt]
+# 
+# 28-Sep-86  Avadis Tevanian (avie) at Carnegie-Mellon University
+#	Threw away old version and recreated using setpath.
+#
+#
+if ($shell == "/usr/cs/bin/csh") then
+	setpath -i $home -i /usr/mach -i /usr/misc
+	setpath PATH -ia /usr/mach/bin /usr/mach/etc
+	setpath PATH -ia /usr/cs/bin /usr/cs/etc
+	setpath PATH -i99 /etc
+
+else if ($?home && "$home" != "/") then
+
+	set path = (. $home/bin /usr/mach/{bin,etc} /usr/cs/{bin,etc} \
+		/usr/ucb /usr/bin /{bin,etc} /usr/misc/bin)
+	setenv CPATH ":$home/include:/usr/mach/include:/usr/cs/include:/usr/include:/usr/misc/include"
+	setenv MPATH ":$home/man:/usr/mach/man:/usr/cs/man:/usr/man:/usr/misc/man"
+	setenv LPATH ":$home/lib:/usr/mach/lib:/usr/cs/lib:/lib:/usr/lib:/usr/misc/lib"
+	setenv EPATH ":$home/maclib:$home/lib/emacs/maclib:/usr/mach/maclib:/usr/cs/maclib:/usr/misc/maclib"
+
+else
+	set path = (. /usr/mach/{bin,etc} /usr/cs/{bin,etc} \
+		/usr/ucb /usr/bin /{bin,etc} /usr/misc/bin)
+	setenv CPATH ":/usr/mach/include:/usr/cs/include:/usr/include:/usr/misc/include"
+	setenv MPATH ":/usr/mach/man:/usr/cs/man:/usr/man:/usr/misc/man"
+	setenv LPATH ":/usr/mach/lib:/usr/cs/lib:/lib:/usr/lib:/usr/misc/lib"
+	setenv EPATH ":$home/lib/emacs/maclib:/usr/mach/maclib:/usr/cs/maclib:/usr/misc/maclib"
+endif
+

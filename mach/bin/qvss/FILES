@@ -1,0 +1,6 @@
+FILES
+Makefile
+RCS
+cmds.c
+parse.h
+qvss.c

@@ -1,0 +1,52 @@
+/*
+ **********************************************************************
+ * HISTORY
+ * $Log:	telldir.c,v $
+ * Revision 1.2  89/05/14  11:53:01  gm0w
+ * 	Added code to make telldir difficult to load and impossible to use.
+ * 	[89/05/14            gm0w]
+ * 
+ **********************************************************************
+ */
+/*
+ * Copyright (c) 1983 Regents of the University of California.
+ * All rights reserved.  The Berkeley software License Agreement
+ * specifies the terms and conditions for redistribution.
+ */
+
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@(#)telldir.c	5.2 (Berkeley) 3/9/86";
+#endif LIBC_SCCS and not lint
+
+#include <sys/param.h>
+#include <sys/dir.h>
+#if	CMU
+#include <stdio.h>
+#include <sys/signal.h>
+#endif	/* CMU */
+
+/*
+ * return a pointer into a directory
+ */
+long
+telldir(dirp)
+	DIR *dirp;
+{
+#if	CMU
+	extern int DONT_USE_TELLDIR_UNDER_MACH();
+#else	/* CMU */
+	extern long lseek();
+#endif	/* CMU */
+
+#if	CMU
+	fprintf(stderr, "Don't use telldir under MACH !!!\n");
+	sigblock(~0);
+	signal(SIGKILL, SIG_DFL);
+	sigsetmask(~sigmask(SIGKILL));
+	kill(getpid(), SIGKILL);
+	abort();
+	DONT_USE_TELLDIR_UNDER_MACH();
+#else	/* CMU */
+	return (lseek(dirp->dd_fd, 0L, 1) - dirp->dd_size + dirp->dd_loc);
+#endif	/* CMU */
+}

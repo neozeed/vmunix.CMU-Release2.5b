@@ -1,0 +1,11 @@
+parsedate.o: parsedate.y parsedate.scr
+	yacc parsedate.y
+	ed - y.tab.c < parsedate.scr
+	mv y.tab.c $*.c
+	${CC} -p ${CFLAGS} -c $*.c
+	-ld -X -r $*.o
+	mv a.out profiled/$*.o
+	${CC} ${CFLAGS} -c $*.c
+	-ld -x -r $*.o
+	mv a.out $*.o
+	rm -f y.tab.o y.tab.c $*.c

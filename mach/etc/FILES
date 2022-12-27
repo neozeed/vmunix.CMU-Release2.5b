@@ -1,0 +1,16 @@
+FILES
+Makefile
+cupdate.csh
+envmgr
+ipcexecd
+kmerge.csh
+lcp
+mach_install.csh
+mach_swapon.c
+machtree.sh
+mutil.csh
+netmemoryserver
+netmsgserver
+rconsole
+runmake.csh
+service

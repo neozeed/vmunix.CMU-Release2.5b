@@ -1,0 +1,116 @@
+#
+# If you change this Makefile, update relevant parts of ../libcs/Makefile
+# and ../libresolv/Makefile
+#
+######################################################################
+# HISTORY
+# $Log:	Makefile-common,v $
+# Revision 2.3.1.3  89/08/29  10:20:51  mbj
+# 	Don't build malloc.o.  The libthreads.a version is used instead.
+# 
+# Revision 2.3.1.2  89/07/20  17:11:18  mbj
+# 	Added parallel subdirectory to VPATH.
+# 
+# Revision 2.3.1.1  89/07/20  14:39:43  mbj
+# 	Add rec_mutex.o and fmap.o to targets for parallel branch.
+# 
+# Revision 2.3  88/12/15  13:04:24  gm0w
+# 	Added concat, makepath and vprintf from libcs.
+# 	[88/12/15            gm0w]
+# 
+# Revision 2.2  88/11/08  20:23:43  gm0w
+# 	Created for new and improved SSP format.
+# 	[88/10/23            gm0w]
+# 
+######################################################################
+
+IDIR		= /usr/cs/lib/
+
+VPATH		= ../libcs:parallel
+
+STDOBJS		= abort.o alarm.o atoi.o atol.o calloc.o closedir.o \
+		  clrerr.o crypt.o ctime.o ctype_.o disktab.o doscan.o \
+		  errlst.o execvp.o exit.o fakcu.o fdopen.o fgetc.o \
+		  fgets.o filbuf.o findiop.o flsbuf.o fopen.o fprintf.o \
+		  fputc.o fputs.o fread.o freopen.o fseek.o fstab.o \
+		  ftell.o ftime.o fwrite.o gcvt.o getchar.o getenv.o \
+		  getgrent.o getgrgid.o getgrnam.o getlogin.o \
+		  getnetbyadr.o getnetbynam.o getnetent.o getopt.o \
+		  getpass.o getproto.o getprotoent.o getprotonam.o \
+		  getpw.o getpwent.o getpwnamuid.o gets.o \
+		  getservbynm.o getservbypt.o getservent.o \
+		  getttyent.o getttynam.o getusershll.o getw.o getwd.o \
+		  gtty.o index.o inet_addr.o inet_lnaof.o \
+		  inet_mkaddr.o inet_netof.o inet_netwrk.o \
+		  inet_ntoa.o initgroups.o isatty.o memccpy.o \
+		  memchr.o memcmp.o memcpy.o memset.o mkstemp.o \
+		  mktemp.o ndbm.o nice.o nlist.o ns_addr.o ns_ntoa.o \
+		  opendir.o pause.o perror.o popen.o printf.o psignal.o \
+		  putchar.o puts.o putw.o qsort.o rand.o random.o \
+		  rcmd.o readdir.o regex.o rew.o rexec.o rindex.o \
+		  ruserpass.o scandir.o scanf.o seekdir.o setbuf.o \
+		  setbuffer.o setegid.o setenv.o seteuid.o setgid.o \
+		  setrgid.o setruid.o setuid.o sibuf.o sigintrrupt.o \
+		  siglist.o signal.o sleep.o sobuf.o sprintf.o \
+		  strcasecmp.o strcat.o strcatn.o strchr.o strcmp.o \
+		  strcmpn.o strcpy.o strcpyn.o strcspn.o strlen.o \
+		  strncat.o strncmp.o strncpy.o strout.o strpbrk.o \
+		  strrchr.o strspn.o strtok.o stty.o swab.o syslog.o \
+		  system.o tell.o telldir.o time.o times.o timezone.o \
+		  tmpnam.o ttyname.o ttyslot.o ualarm.o ungetc.o \
+		  usleep.o utime.o valloc.o vlimit.o vtimes.o \
+		  rec_mutex.o fmap.o
+LRESOBJS	= herror.o res_comp.o res_debug.o res_init.o res_mkquery.o \
+		  res_Mkquery.o res_query.o res_send.o gethostnmad.o \
+		  sethostent.o
+LCSOBJS		= abspath.o atoh.o atoo.o atot.o boolarg.o\
+		  bsearch.o chrarg.o ci.o concat.o del.o\
+		  dfork.o doublearg.o editor.o errmsg.o\
+		  expand.o fdate.o ffilecopy.o fgetpass.o\
+		  filecopy.o floatarg.o fold.o fwantread.o\
+		  fwantwrite.o getbool.o getchr.o getdouble.o\
+		  getfloat.o gethex.o gethostattr.o getint.o\
+		  getlong.o getname.o getoct.o getpwwho.o\
+		  getsearch.o getshort.o getstab.o getstr.o\
+		  gtime.o hexarg.o intarg.o longarg.o\
+		  makepath.o movefile.o nxtarg.o octarg.o\
+		  openp.o parsedate.o path.o pathof.o prstab.o\
+		  quit.o run.o salloc.o searcharg.o searchp.o\
+		  setpath.o shortarg.o sindex.o skipto.o\
+		  srchscore.o stabarg.o stablk.o stabsearch.o\
+		  stlmatch.o strarg.o vmnlist.o vprintf.o\
+		  wantread.o wantwrite.o
+
+CPP		= `wh -Lq cpp`
+CPPFLAGS	= -I${MACHINE} -I../include
+
+LIBRARIES	= libc.a
+OBJECTS		= crt0.o mcrt0.o gcrt0.o ${${MACHINE}_OBJECTS}
+CFLAGS		= -I../include -DLIBC_SCCS ${${MACHINE}CFLAGS}
+OFILES		= ${${MACHINE}OBJS} ${STDOBJS} ${LRESOBJS} ${LCSOBJS}
+
+IMODE		= 644
+GARBAGE		= parsedate.c ${${MACHINE}_GARBAGE}
+
+include ../Makefile-common
+
+#
+# If you change this rule, update ../libcs/Makefile
+#
+parsedate.c: parsedate.y parsedate.scr
+	${YACC} ${_YFLAGS_} $*.y
+	ed - y.tab.c < parsedate.scr
+	mv y.tab.c $*.c
+
+libc%.a_ordered:
+	rm -rf tmp
+	mkdir tmp
+	mv libc%.a tmp
+	cd tmp && { \
+		${AR} x libc%.a; \
+		ls *.o >t1; \
+		${AR} cr ../libc%.a `lorder \`cat t1\` | tsort`; }
+	rm -rf tmp
+	${AR} ma findiop%.o libc%.a exit%.o
+	${AR} ma exit%.o libc%.a fakcu%.o
+	${RANLIB} libc%.a

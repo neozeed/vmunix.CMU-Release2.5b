@@ -1,0 +1,144 @@
+		     NOTES ON THE RCONSOLE FACILITY
+
+The rconsole facility, which allows access to the console of a remote
+machine via a (hardwired) tty line, consists of two programs.  The
+first program, rconsoled, is a daemon program which should normally be
+started up automatically at boot time.  The file /etc/rc.local should
+include a line for each rconsoled daemon to be started.  A separate daemon
+is required for each remote console tty line.  The rconsoled daemon performs
+two tasks.  First, it logs (in a file on the local machine) all output that
+appears on the remote console.  Second, it supports a "chat" service,
+allowing a user on any remote machine to "connect" his tty to the console
+port of the remote machine.
+
+The second program in the rconsole facility is the rconsole utility program.
+This is the program that is run by the user when he wishes to connect to a
+remote console.  Once connected, all input typed by the user will be sent to
+the remote machine through the corresponding rconsoled daemon.  All output
+to the remote console will continue to be logged by the rconsoled daemon,
+but it will also now appear on the user's tty as well.  Thus, the user's tty
+can effectively be regarded as the console terminal of the remote machine.
+
+Use:
+1) rconsoled [-a] name &
+	where name is one of the remote machines listed in /etc/rconsoles.
+	Any of the available aliases listed in /etc/rconsoles is acceptable.
+	The -a flag causes the rconsoled daemon to request a password
+	from the rconsole client before allowing access to the console
+	tty.  If this flag is not specified, any user knowing the appropriate
+	port number (which is listed in the /etc/services file on all CS
+	vaxen) may run rconsole and have access to the remote console.  If
+	-a is specified, rconsole will request a password, which should be
+	the login password for the user listed as RCONSOLE_ID in the
+	rconsole.h file (on the server's machine).
+	The only way to terminate rconsoled is by killing it, or sending it
+	a termination message using the -k option of rconsole (see below).
+
+2) rconsole [-eC] [-l logfile] [-k] name
+	where name is one of the remote machines listed in /etc/rconsoles.
+	Any of the available aliases listed in /etc/rconsoles is acceptable.
+	To terminate the program, type ^_ (CTRL-Underscore).  This escape
+	character (^_) can be changed through use of the -e option.  No space
+	should separate the -e option flag from the argument character.
+	If a script of the console session is desired (in addition to the log
+	produced by the rconsoled daemon) the -l option can be used.  All
+	console output will be appended to the end of the file whose name is
+	specified following the -l flag.  If logfile doesn't exist, it will be
+	created.  Whether or not the -l option is used, a log of the current
+	console session will be maintained by the rconsoled daemon, along with
+	all of the other console activity preceding and following this
+	session.
+	The -k flag can be used to kill the rconsoled daemon associated with
+	the specified remote console.  In this case, no chat session will
+	take place, and none will be possible until the daemon is restarted.
+	If the rconsoled daemon requests a password, one will prompted
+	for and sent.  If rconsoled then says the password is valid, 
+	normal operation will begin.  If not, then rconsole will quit.
+	
+Examples:
+1) To start up the rconsoled daemon for the remote machine called wb4:
+	rconsoled wb4 &
+
+2) To start up that same daemon with authorization:
+	rconsoled -f wb4 &
+
+3) To connect to the console of wb4:
+	rconsole wb4
+
+4) To connect to wb4, and record a personal copy of the console session:
+	rconsole -l mylogfile wb4
+
+5) To terminate the rconsoled daemon for wb4:
+	rconsole -k wb4
+
+
+	     Files Used or Affected by the Rconsole Facility
+
+/dev/ttyNN:
+The local tty lines which are hardwired to the consoles of remote machines
+should have their protection set so that they are r/w only by their owner
+(root).  No one else should be permitted any access.  This will ensure that
+only the rconsoled daemons started (owned) by root will be able to directly
+access the remote consoles.
+
+/etc/ttys:
+The entries for the tty lines which are hardwired to the consoles of remote
+machines should be disabled, by putting a zero as the first character of
+those entries.  This will prevent the init process from trying to start up a
+getty process on those tty lines.
+
+/etc/rc.local:
+Should include lines, similar to the example shown above, for starting up the
+various rconsoled daemons.  One daemon should be started for each of the
+remote machine consoles which are accessible via a hardwired tty line.
+
+/etc/rconsoles:
+This file contains the list of remote machines (and their aliases), and is
+used for mapping machine names to local tty lines.  Each line of the file
+usually corresponds to a different remote machine console, and has the
+following format:
+    <tty> <baud> <server_host> <port> <common_name> [alias1] [alias2] ...
+The first five fields are required, and
+at most 9 aliases are permitted.  If more aliases are needed, additional
+lines, whose first five fields are identical, should be
+used.  <tty> is the name of the local tty line, e.g. tty07, as specified in
+the /dev directory.  <baud> is the baud rate code for the tty line, as
+defined in <sgtty.h> (see TTY(4)).  <common_name> is the name most commonly
+used in referring to the remote machine, and is the name which appears as a
+component of some of the file names to be discussed below.  The aliases are
+other names by which the remote machine is also known.  Either the common
+name or any of the aliases can be used when specifying the remote machine to
+rconsole or rconsoled.  Note that case is significant in the common name and
+the aliases.  An example entry in /etc/rconsoles might look as follows:
+	tty07	9	wb4	cmu-cs-wb4 WB4 CMU-CS-WB4 4
+Note that the <baud> value of 9 means 1200 baud.
+<server_host> is the name of the host on which the daemon for this
+particular console runs.  <port> is the inet port number on this
+host which is associated with this particular daemon.  This port number
+should be a privileged one (<1024) so that unprivileged users may not
+create fake rconsole daemons which would then wait for someone to run
+rconsole and tell them the password.
+
+/usr/adm/rconsole/<common_name>:
+Log of "recent" console output for the remote machine <common_name>.  When a
+log file grows beyond 250000 bytes long, rconsoled renames it to be
+/usr/adm/rconsole/<common_name>.old, and creates a new log file, with the
+same name as before, to hold subsequent console output.
+
+
+
+				History
+
+25-Sep-84  James Wendorf (jww) at Carnegie-Mellon University.
+	Created.
+
+02-Oct-84  James Wendorf (jww) at Carnegie-Mellon University.
+	Added description of rconsole and rconsoled command line options.
+
+09-Oct-84  James Wendorf (jww) at Carnegie-Mellon University.
+	Added description of new rconsole command line options (-l and -k).
+	Modified description of how rconsoled can be terminated.
+
+17-Jan-86  Bill Bolosky (bolosky) at Carnegie-Mellon University.
+	Changed to describe the version of rconsole which uses
+	INET sockets as opposed to Unix sockets.

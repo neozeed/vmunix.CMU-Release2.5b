@@ -1,0 +1,3 @@
+This directory contains files that are copies of the ones in
+/usr/cs/lib. It is here to ensure that remote site get these files
+with Mach library distributions.

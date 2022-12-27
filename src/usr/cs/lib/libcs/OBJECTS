@@ -1,0 +1,11 @@
+LCSOBJS=abspath.o atoh.o atoo.o atot.o boolarg.o bsearch.o chrarg.o \
+	ci.o del.o dfork.o doublearg.o editor.o errmsg.o expand.o \
+	fdate.o ffilecopy.o fgetpass.o filecopy.o floatarg.o fold.o \
+	fwantread.o fwantwrite.o getbool.o getchr.o getdouble.o \
+	getfloat.o gethex.o gethostattr.o getint.o getlong.o getname.o \
+	getoct.o getpwwho.o getsearch.o getshort.o getstab.o getstr.o \
+	gtime.o hexarg.o intarg.o longarg.o movefile.o nxtarg.o \
+	octarg.o openp.o parsedate.o path.o pathof.o prstab.o quit.o \
+	run.o salloc.o searcharg.o searchp.o setpath.o shortarg.o \
+	sindex.o skipto.o srchscore.o stabarg.o stablk.o stabsearch.o \
+	stlmatch.o strarg.o vmnlist.o wantread.o wantwrite.o

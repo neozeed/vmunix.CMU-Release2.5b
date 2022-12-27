@@ -1,0 +1,19 @@
+#!/bin/csh -f
+# 
+# Mach Operating System
+# Copyright (c) 1989 Carnegie-Mellon University
+# All rights reserved.  The CMU software License Agreement specifies
+# the terms and conditions for use and redistribution.
+#
+# HISTORY
+# $Log:	cthread_inline,v $
+# Revision 1.2  89/05/05  18:48:09  mrt
+# 	Cleanup for Mach 2.5
+# 
+
+#
+# cthread_inline
+#
+# Shell script to inline critical C Threads primitives.
+
+awk -f $1/machine/cthread_inline.awk $2

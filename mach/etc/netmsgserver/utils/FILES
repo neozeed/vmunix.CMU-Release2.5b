@@ -1,0 +1,13 @@
+FILES
+Makefile
+dummy_kds.c
+km_test.c
+new_ns_port.c
+nmcontrol.c
+nmprofexit.c
+nmtest.c
+nmtime.c
+nmxlog.c
+nmxportstat.c
+old_ns_port.c
+vmtptest.c

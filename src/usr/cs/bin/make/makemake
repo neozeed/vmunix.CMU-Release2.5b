@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# $Header: makemake,v 5.0 89/03/01 01:40:15 bww Exp $
+#
+# Copyright (c) 1989 Carnegie-Mellon University
+# All rights reserved.  The CMU software License Agreement specifies
+# the terms and conditions for use and redistribution.
+########################################################################
+# HISTORY
+# $Log:	makemake,v $
+# Revision 5.0  89/03/01  01:40:15  bww
+# 	Version 5.
+# 	[89/03/01  01:32:08  bww]
+# 
+########################################################################
+DEFINES='-DASCARCH'
+#DEFINES='-DCOFF'
+CFLAGS="${DEFINES} -O"
+${CC=cc} -c ${CFLAGS} main.c
+${CC} -c ${CFLAGS} doname.c
+${CC} -c ${CFLAGS} misc.c
+${CC} -c ${CFLAGS} files.c
+${CC} -c ${CFLAGS} dirs.c
+${CC} -c ${CFLAGS} libs.c
+${CC} -c ${CFLAGS} rules.c
+${CC} -c ${CFLAGS} dosys.c
+yacc gram.y
+mv y.tab.c gram.c
+${CC} -c ${CFLAGS} gram.c
+${CC} -c ${CFLAGS} dyndep.c
+${CC} main.o doname.o misc.o files.o dirs.o libs.o rules.o dosys.o gram.o dyndep.o -o make

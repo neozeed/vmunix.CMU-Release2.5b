@@ -1,0 +1,256 @@
+########################################
+#
+# HISTORY
+#
+# $Log:	rc.nfs,v $
+# Revision 2.0  89/06/15  15:26:16  dimitris
+#   Organized into a misc collection and SSPized
+# 
+#
+########################################
+HOME=/; export HOME
+PATH=/usr/cs/etc:/etc:/usr/cs/bin:/usr/ucb:/bin:/usr/bin; export PATH
+if [ -s /vmunix.reboot ]
+then
+	rm -f /../../mach.old /../../mach.new /mach.new
+	rm -f /../../vmunix.old /../../vmunix.new /vmunix.new
+	if [ -r /mach ]; then mv /mach /mach.old; fi
+	if [ -r /vmunix ]; then mv /vmunix /vmunix.old; fi
+	rm -f /../../mach /../../vmunix
+	if [ -r /mach.reboot ]; then
+		mv /mach.reboot /mach
+	else
+		mv /vmunix.reboot /mach
+	fi
+	ln /mach /vmunix
+	ln /mach /../../mach
+	ln /mach.old /../../mach.old
+	ln /vmunix /../../vmunix
+	ln /vmunix.old /../../vmunix.old
+	echo Rebooting new /mach system >/dev/console
+	/etc/reboot
+else
+	rm -f /vmunix.reboot /mach.reboot
+fi
+check=T
+if [ $1x != autobootx ]
+then
+	/etc/umount -a
+	sh /etc/rc.ask </dev/console >/dev/console
+	if [ $? = 25 ]
+	then
+		check=F
+	fi
+elif [ -r /fastboot ]
+then
+	echo Fast boot ... skipping disk checks >/dev/console
+	check=F
+fi
+rm -f /fastboot
+if [ $check = T ]
+then
+	echo Automatic reboot in progress... >/dev/console
+	date >/dev/console
+	/etc/fsck -p >/dev/console
+	case $? in
+	0)
+		date >/dev/console
+		;;
+	2)
+		exit 1
+		;;
+	4)
+		/etc/reboot -n
+		;;
+	8)
+		echo "Automatic reboot failed... help!" >/dev/console
+		exit 1
+		;;
+	12)
+		echo "Reboot interrupted" >/dev/console
+		exit 1
+		;;
+	*)
+		echo "Unknown error in reboot" > /dev/console
+		exit 1
+		;;
+	esac
+else
+	date >/dev/console
+fi
+
+if [ -s /etc/ptmp ]
+then
+	if [ -s /etc/passwd ]
+	then
+		ls -l /etc/passwd /etc/ptmp >/dev/console
+		rm -f /etc/ptmp		# should really remove the shorter
+	else
+		echo 'passwd file recovered from ptmp' >/dev/console
+		mv /etc/ptmp /etc/passwd
+	fi
+elif [ -r /etc/ptmp ]
+then
+	echo 'removing passwd lock file' >/dev/console
+	rm -f /etc/ptmp
+fi
+
+umask 22
+/etc/umount -a
+cp /dev/null /etc/mtab
+
+for dir in `awk -F: '$3 == "rw" && $2 != "/" { print $2"/tmp" }' /etc/fstab`
+do
+    (test -d "${dir}" && cd "${dir}" && rm -rf ./.)
+done
+
+E="umount: Invalid argument"
+FSTAB=/dev/null
+V=`echo "mach_factor?D" | adb /vmunix`
+if [ "$V" = '_mach_factor:
+_mach_factor:	0' ]; then FSTAB=/etc/fstab; fi
+area=0
+for part in `<$FSTAB sed -n -e 's;\(/dev/[^:]*:[^:]*\):sw:.*;\1;p`
+do
+    while true; do
+	dev=`expr "$part" : "\([^:]*\):[^:]*"`
+	type=`expr "$part" : "[^:]*:\([^:]*\)"`
+	if [ -z "$type" ]; then
+	    FSTAB=$FSTAB dev=$dev sh /etc/rc.page </dev/console >/dev/console
+	    if [ $? -ne 0 ]; then
+	        exit 1;
+	    fi
+            part=`<$FSTAB sed -n -e 's;\('"$dev"':[^:]*\):sw:.*;\1;p`
+        else
+	    break
+	fi
+    done
+    /etc/umount $dev >/dev/null 2>&1
+    S=`/etc/umount $dev 2>&1 | sed "s;${dev};umount;"`
+    if [ -z "$S" -o "$E" = "$S" ]; then
+	name=/paging${area}
+	area=`expr "$area" + 1`
+	if [ ! -d $name ]; then
+	    mkdir $name
+	    echo -n "Created directory $name - " >/dev/console 2>&1
+	fi
+	echo "Initializing 4K $dev ($type) as $name" >/dev/console 2>&1
+        
+	/etc/newfs -b 4096 -f 1024 $dev $type >/dev/console 2>&1
+	/etc/mount $dev $name >/dev/console 2>&1
+    else
+	echo $S >/dev/console
+    fi
+done
+
+/etc/swapon -a						>/dev/console 2>&1
+/etc/mount -a						>/dev/console 2>&1
+
+if [ -f /usr/cs/etc/syslink ]; then
+	echo "Setting kernel program links"		>/dev/console 2>&1
+	/usr/cs/etc/syslink				>/dev/console 2>&1
+fi
+
+/bin/ps -U						>/dev/console 2>&1
+/usr/cs/etc/mkvmnlist /usr/cs/etc/vmnlist.list
+rm -f /etc/nologin
+mv -f /etc/standalone /etc/nologin
+rm -f /etc/ptmp /etc/gtmp /etc/atmp /etc/*.lock
+rm -f /usr/spool/uucp/LCK/*
+rm -f /usr/spool/netmail/lock.remaild
+rm -f /usr/cs/lib/bb/*.lck
+rm -f /usr/cs/lib/hosts/#*.sup
+/usr/cs/etc/cleanroot &
+chmod 666 /dev/tty[pqrst]*
+find -nosymlink -nomount /tmp/ /usr/tmp/ -type s -exec rm -f {} \;
+
+if [ -f /usr/misc/.afpa/bin/afpacode ]
+then
+    /usr/misc/.afpa/bin/afpacode -rc -ucode /usr/misc/.afpa/lib/afpa.ucode >/dev/console 2>&1
+fi
+
+/etc/neton
+sleep 10
+while true
+do
+    echo -n "Requesting date/time from network: " >/dev/console
+    /usr/cs/etc/nettime -setdate `awk '$0 !~ /^#/ { print $2; }' /usr/cs/lib/nettime.dat` >/dev/console 2>&1
+    case $? in
+    0)
+	break
+	;;
+    130)
+	echo "... interrupted" >/dev/console
+	exit 1
+	;;
+    131)
+	echo "... aborted at `date`" >/dev/console
+	break
+	;;
+    *)
+	echo "... timed out at `date`" >/dev/console
+	;;
+    esac
+done
+
+if [ ! -f /usr/cs/include/ca/types.h ]; then
+    v=`echo "version+0t34?S;/S" | adb /vmunix /dev/kmem | grep "version+" | sort -u | wc -l`
+    if [ "$v" != "       1" ]; then
+	echo "Not running /vmunix - multi-user boot aborted" >/dev/console
+    	exit 1
+    fi
+fi
+
+if [ -f /usr/misc/.nfs/etc/rc ]; then
+	date 						>/dev/console 2>&1
+	echo "initializing for afs[vice]/nfs"		>/dev/console 2>&1
+	sh /usr/misc/.nfs/etc/rc
+	echo "."					>/dev/console 2>&1
+	date 						>/dev/console 2>&1
+fi
+
+if [ -f /etc/rc.local ]; then
+	echo "doing local commands"		>/dev/console 2>&1
+	sh /etc/rc.local
+fi
+
+if cmp /etc/fstab /etc/fstab.ro
+then
+    cp /etc/fstab.std /etc/fstab
+    sync
+fi
+d=`date | sed -e 's;^....\(...\) *\([^ ]*\) *\(.....\).*;\2-\1-\3;'`
+(cd /usr/adm/log; mkdir $d; chown opr $d; chgrp opr $d; chmod 775 $d; mv *.log $d; umask 27; touch bb-alias.log ml-alias.log remaild.log; chown network *.log; rmdir *)
+if [ -f /usr/misc/.mmdf/lib/setlogs ]
+then
+    /usr/misc/.mmdf/lib/setlogs				>/dev/console 2>&1
+fi
+				echo preserving editor files 	>/dev/console
+(cd /tmp; /usr/lib/ex3.7preserve -a)
+/usr/cs/etc/lpc clean all
+				echo -n standard daemons:	>/dev/console
+/etc/update;			echo -n ' update'		>/dev/console
+/etc/cron;			echo -n ' cron'			>/dev/console
+if [ -f /usr/adm/acct ]; then
+	/etc/accton /usr/adm/acct; echo -n ' accounting'	>/dev/console
+fi
+				echo '.'			>/dev/console
+
+if [ -r /usr/cs/etc/nnanny ]; then
+	echo -n " installing new nanny"				>/dev/console
+	mv -f /usr/cs/etc/nanny /usr/cs/etc/nanny.old
+	mv -f /usr/cs/etc/nnanny /usr/cs/etc/nanny
+fi
+
+				echo -n starting nanny  	>/dev/console
+/usr/cs/etc/nanny -init /usr/cs/etc/nanny.config
+				echo '.'			>/dev/console
+
+				echo starting private commands	>/dev/console
+/usr/cs/etc/rcrun /usr 2>/usr/adm/log/rcrun.log&
+				date				>/dev/console
+find /usr/crash -name "vm*" \( -atime +7 -mtime +7 \) -exec rm {} \;
+/etc/savecore /usr/crash 2>&1 > /dev/console
+(/usr/cs/etc/dosyssup cs.sup; exec /usr/cs/etc/dosyssup -older 1) &
+
+exit 0

@@ -1,0 +1,391 @@
+.TH RELEASE 8 9/10/88
+.CM 4
+.SH NAME
+release \- move software through release stages
+.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.\" HISTORY
+.\" $Log:	release.8,v $
+.\" Revision 2.2  88/11/10  13:12:50  gm0w
+.\" 	Moved to /usr/misc/.sdm/man.
+.\" 	[88/11/10            gm0w]
+.\" 
+.\" Revision 2.2  88/09/10  17:52:26  mja
+.\" 	Add description for -uselog.
+.\" 	[88/09/10  17:50:44  mja]
+.\" 	
+.\" 	Add description for -norm, -nopost and -nostrip and remove -s,
+.\" 	-xc and -xs;  update log message description for new
+.\" 	interactive mode.
+.\" 	[88/09/10  01:42:44  mja]
+.\" 
+.\" 14-Jul-88  Daryl Clevenger (dlc) at Carnegie-Mellon University
+.\"	Created.
+.\"
+.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.SH SYNOPSIS
+.B /usr/cs/etc/release
+[ options ] file ...
+.SH DESCRIPTION
+.I Release
+is a script to help move programs, data files, etc.
+from
+build areas to release areas, or from one release to another.
+Build areas are typically areas where programs are compiled for
+various architectures.
+Release areas are areas that can be set
+up for the distribution of software to various sets of machines
+depending upon some criteria e.g.
+software that is in alpha or beta
+test, or in final general release.
+In general,
+.I release
+knows nothing about the organization of the software release
+area and needs to be told what actions it should perform and
+where files are located.
+
+In addition to copying software around, it provides a very simple
+mechanism to track who released the software and to track bboard
+posts as releases are moved.
+
+.I Release
+requires at least one
+.I file
+argument, which from here on will be called the
+.I target.
+The
+.I target
+is a path name specifying some file as it is named
+in the file system, independent of the full path name of the
+.I target
+in the release area.  For example,
+.I /bin/cp
+would be the
+.I file
+argument to
+.I release
+even if it were being placed into the directory
+.I /dist/ALPHA.
+After all the options
+have been processed, any additional parameters are
+taken to be one or more
+.I targets.
+The first
+.I target
+name is taken to be the `canonical' name of the
+.I target
+and any additional
+.I targets
+are made hard links to this name in the release area.
+
+Of all of the options to
+.I release
+only 2 are required.
+The first is the
+.B \-tobase
+.I tobase
+option, where the
+.I tobase
+argument is the path name of the base directory
+where all of the
+.I targets
+are to be created.
+
+The second required option is one of the mutually exclusive options 
+.B \-fromfile
+.I fromfile
+or
+.B \-frombase
+.I frombase.
+With the former option,
+.I fromfile
+is taken to be the source
+of the
+.I target's
+contents to be placed in
+.I tobase.
+.I Fromfile
+is not altered in any way, and typically is a file
+in a system build area.  The latter option specifies a base directory,
+.I frombase,
+where each of the
+.I targets
+are to be moved into
+.I tobase.
+.I Release
+assumes that when moving a file from
+.I frombase
+to
+.I tobase
+that only the most recent copy needs to be maintained.
+So, if the first
+.I target
+is copied successfully (and all links are made),
+then all the
+.I targets
+under
+.I frombase
+are removed
+(this may be suppressed by including the
+.B \-norm
+option).
+The
+.B \-p
+switch to
+.I cp(1)
+is always used to copy a file, whether
+.B \-fromfile
+or
+.B \-frombase
+are specified.
+
+
+The following additional options are understood by
+.I release:
+
+.TP 
+\fB\-m\fP \fImode\fP
+Set the protection of the
+.I target
+according to the mode,
+.I mode.
+See
+.I chmod(1).
+.TP 
+\fB\-o\fP \fIowner\fP
+Set the owner of the target to be
+.I owner.
+See
+.I chown(8).
+.TP 
+\fB\-g\fP \fIgroup\fP
+Set the group owner of the file to be
+.I group.
+See
+.I chgrp(1).
+.TP 
+.BR \-nostrip
+The target is normally taken to be a binary executable and
+.I strip(1)
+will be run on it unless this
+option is included or the target name ends in ".o".
+This option only applies when used with
+.B \-fromfile
+and only the copy of
+.I fromfile
+put into
+.I tobase
+is ever stripped.
+.TP 
+\fB\-uselog\fR target
+Specifies the 
+.I target
+to use in extracting log messages (see below) rather than
+the default canonical target name.
+.TP 
+.BR \-q
+This is for quick mode.  If a non-fatal consistency check fails, then
+normally
+.I release
+will prompt to continue.  In quick mode, a warning message is printed
+and the script continues.  Also, the installers tracking database
+is not updated and no bboard post is generated.
+.i0
+.DT
+.PP
+.I Release
+checks to make sure that the number of links to
+.I target
+is consistent with the number of file names given on the command line.
+Notably, if using the
+.B \-frombase
+option and
+.I target
+exists in both
+.I frombase
+and
+.I tobase
+(obviously this is a previous version), then if the number of links
+to
+.I target
+in either of these base directories is different from the number
+of file targets specified, a warning message is printed.  If not in
+quick mode, then
+.I release
+will prompt to continue, with the default answer
+.B no.
+Likewise, the number of links are checked if the
+.B \-fromfile
+option is used and the
+.I target
+already exists in
+.I tobase.
+These checks are provided to make sure that a link to a program that
+should be in the release area is not accidently removed, or
+that an extra link is not added.  Neither of these problems may be
+particularly fatal, so if in quick mode only the warning message is
+printed and the
+.I release
+script continues to install the
+.I target
+and any links as specified on the command line.
+
+Two final features of
+.I release
+are the ability to track who installed the
+.I target
+and the post contents of bboard messages.  Under the
+.I tobase
+directory is a file called
+.I .installers.log
+which contains lines with space separated fields of the form:
+.br
+.br
+.IP
+.I < target >
+.I < user >
+.I < date >
+.i0
+.DT
+.PP
+.br
+.br
+Here,
+.I target
+is the same as the `canonical' name of the file i.e. the first file name
+after all of the options.
+.I User
+is the person installing the file and
+.I date
+is the date that the file was installed.
+Only one entry for each (
+.I target,
+.I user
+) pair is retained in the database.  These entries can be used to
+track who last released a piece of software and when it was released.
+
+Unless running in quick mode or as described below,
+.I release
+always puts the user into the editor to compose a log message about
+the released file.
+In editing the message, if the
+.B \-frombase
+option is being used, a message for the
+.I target
+is extracted from the file
+.I .post.log
+under the
+.I frombase
+directory.
+When the
+.B \-uselog
+option is included,
+a message for the specified
+target 
+is extracted
+from under the
+.I tobase
+directory instead.
+This option is handy when many files are to be installed with the
+same log message as some other related file which has been
+installed first.
+The format of
+.I .post.log
+is lines of the form:
+.br
+.br
+.IP
+.I < target >
+.I < text >
+.i0
+.DT
+.PP
+.br
+.br
+The
+.I text
+part of the lines prefixed by
+.I target
+is extracted into a temporary file, which is edited to provide any
+additional information to this particular release of the
+.I target.
+By keeping track of log messages from earlier releases, one does not
+have to remember the content of the last relevant message about this
+.I target.
+If using the
+.B \-fromfile
+option, the editor is run with an empty temporary file.
+If the
+.B \-nopost
+option was included and such a message can be extracted
+it is used without any interaction with the user.
+
+During the interactive composition process, the
+.B edit
+action can be used to re-enter the editor, the
+.B subject
+action can be used to adjust the default subject and the
+.B type
+action can be used to display the message.
+The process is completed using the
+.B post
+or
+.B log
+actions.
+
+Once the log message composition process is complete, the
+message is recorded and
+.I post(1)
+is executed (using the temporary message file as its input) unless the
+.B \-nopost
+option was included or the composition process
+was completed using the
+.B log
+action.
+The user running
+.I release
+is who the post is from
+and a subject (initially corresponding to
+the string formed by concatenating
+the trailing component of
+.I tobase
+and
+.I target)
+is passed to
+.I post(1).
+The message is posted on the
+.I unix-changelog
+bboard.
+Only the most recent message for
+.I target
+under
+.I tobase
+is retained in the
+.I .post.log
+file under
+.I tobase.
+
+
+.SH ENVIRONMENT
+EDITOR
+.br
+.IP
+The name of the editor one prefers to use.
+If unset, then
+.I emacs(1)
+is used.
+.SH FILES
+*/.installers.log		tracks who is releasing software
+.br
+*/.post.log		the posts for a file that is released
+.br
+/tmp/release-whodb.*	temporary copy of .installers.log
+.br
+/tmp/release-postdb.*	temporary copy of .post.log
+.br
+/tmp/release-post.*	file used to edit the bboard post
+.br
+.SH DIAGNOSTICS
+There are error messages and diagnostics that should be self
+explanatory.
+The script exits with status 0 on success and
+status 1 if any kind of problem occurs.
